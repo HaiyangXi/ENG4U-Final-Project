@@ -143,10 +143,9 @@
         }
 
         /* =========================================
-           3. UI COMPONENTS & TIMELINES
+           3. UI COMPONENTS
            ========================================= */
         
-        /* Author Timeline Specific */
         .author-timeline {
             position: relative;
             margin: 4rem 0;
@@ -173,11 +172,6 @@
             padding: 20px;
             border: 1px solid rgba(0, 210, 255, 0.1);
             transition: 0.3s;
-        }
-
-        .timeline-card:hover {
-            background: rgba(0, 210, 255, 0.05);
-            border-color: var(--neon-blue);
         }
 
         .timeline-card::before {
@@ -223,20 +217,6 @@
             transform: scale(1.05);
         }
 
-        .timeline-info h4 {
-            color: var(--neon-blue);
-            margin-bottom: 8px;
-            font-family: var(--font-display);
-            font-size: 0.9rem;
-        }
-
-        .timeline-info p {
-            font-size: 0.85rem;
-            color: var(--text-dim);
-            line-height: 1.5;
-        }
-
-        /* General UI Elements */
         .knowledge-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -288,18 +268,6 @@
             background: rgba(255, 0, 127, 0.03); margin: 2rem 0; font-family: var(--font-mono);
         }
 
-        /* Modal Overlay */
-        #system-modal {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.92); backdrop-filter: blur(12px);
-            display: none; justify-content: center; align-items: center; z-index: 10000;
-        }
-
-        .modal-content {
-            background: var(--bg-void); border: 1px solid var(--neon-pink);
-            width: 90%; max-width: 650px; padding: 3rem; position: relative;
-        }
-
         @keyframes text-glitch {
             0%, 92%, 100% { transform: skew(0); }
             94% { transform: skew(10deg); text-shadow: 2px 0 var(--neon-pink); }
@@ -335,7 +303,7 @@
             <button class="nav-btn" onclick="switchLog('elements', this)">03. NEURAL_NODES</button>
             <button class="nav-btn" onclick="switchLog('narrative', this)">04. FLOW_LOGIC</button>
             <button class="nav-btn" onclick="switchLog('archive', this)">05. THEMATIC_SYNS</button>
-            <button class="nav-btn" onclick="switchLog('critical', this)">06. USER_REFLECT</button>
+            <button class="nav-btn" onclick="switchLog('critical', this)">06. SYSTEM_REFLECT</button>
             <button class="nav-btn" onclick="switchLog('visual', this)">07. MEDIA_STREAM</button>
         </nav>
 
@@ -354,7 +322,7 @@
             <div class="terminal-block">
                 > BOOTING LITERARY_ANALYSIS_ENGINE_V4...<br>
                 > LOADING "THE FUN THEY HAD" (ASIMOV_1951)...<br>
-                > PRIMARY CONFLICT DETECTED: [MAN_VS_SYSTEM]
+                > PRIMARY CONFLICT DETECTED: [HUMAN_VS_MECHANICAL_CLOSED_LOOP]
             </div>
             
             <h1 class="glitch-large">THE FUN<br>THEY HAD</h1>
@@ -499,59 +467,59 @@
             </div>
         </section>
 
-        <!-- 06. USER REFLECT -->
+        <!-- 06. USER REFLECT (ENHANCED INTEGRATION) -->
         <section id="critical" class="log-section">
-            <h2 style="font-family: var(--font-display); color: var(--neon-yellow); margin-bottom: 1rem;">PERSONAL_ACADEMIC_BACKGROUND</h2>
+            <h2 style="font-family: var(--font-display); color: var(--neon-yellow); margin-bottom: 1rem;">ALGORITHMIC_LITERARY_REFLECTION</h2>
             <div class="terminal-block">
-                > DECRYPTING DOSSIER: HAIYANG XI<br>
-                > PATH: MATH → CONTROL_THEORY → ENGINEERING_ALGORITHMS<br>
-                > CLASSIFICATION: CROSS-DISCIPLINARY SCHOLAR
+                > INTEGRATING DOSSIER: HAIYANG XI<br>
+                > LENS: CONTROL_THEORY + ENGINEERING_ALGORITHMS<br>
+                > ANALYZING "THE FUN THEY HAD" AS A SYSTEM FAILURE
             </div>
 
-            <div class="analysis-text" style="font-size: 0.95rem; background: rgba(0, 210, 255, 0.02); padding: 20px; border: 1px solid rgba(0, 210, 255, 0.2);">
-                <p>I am currently a student receiving secondary education in Canada, but my academic training and interests are not limited to the traditional curriculum. I have long focused on <b>Mathematics, Control Theory, and Engineering Algorithms</b>, forming an autonomous learning path centered on theoretical structures verified by engineering systems.</p>
+            <div class="analysis-text" style="font-size: 0.95rem; background: rgba(0, 210, 255, 0.05); padding: 25px; border: 1px solid var(--neon-blue); margin-bottom: 2rem;">
+                <p>As a student deeply involved in <b>Mathematics and Control Theory</b>, I view Margie’s mechanical teacher as a "Perfect System" that fails precisely because of its perfection. In engineering, a system is defined by its structure, constraints, and feedback loops. In Asimov’s story, the education system is a <b>Closed-Loop Feedback System</b>: it monitors Margie’s performance and adjusts the difficulty to match her "level." However, this system neglects the most critical variable in human development: <b>Social Stochasticity</b>—the unpredictable, non-linear growth that occurs through human-to-human interaction.</p>
             </div>
 
             <div class="knowledge-grid">
                 <div class="data-card">
-                    <div class="status-tag">CORE_PILLAR_01</div>
-                    <h4>MATHEMATICAL FOUNDATION</h4>
-                    <p style="font-size: 0.8rem; color: var(--text-dim);">I focus on internal structural problems rather than exam-oriented learning. Systematically studying university-level Calculus, Linear Algebra, and Differential Equations, emphasizing assumptions and generalizability.</p>
+                    <div class="status-tag">ANALYSIS_01</div>
+                    <h4>REDUCTIONIST ALGORITHMS</h4>
+                    <p style="font-size: 0.8rem; color: var(--text-dim);">The mechanical teacher reduces education to "Punch Codes" and data entry. From an algorithmic perspective, it ignores the <i>complexity of the learning process</i>, treating knowledge acquisition as a simple linear function rather than a multi-agent collaborative search for truth.</p>
                 </div>
 
                 <div class="data-card" style="border-color: var(--neon-green);">
-                    <div class="status-tag">CORE_PILLAR_02</div>
-                    <h4>CONTROL THEORY</h4>
-                    <p style="font-size: 0.8rem; color: var(--text-dim);">A paradigm for embedding math into reality. I study feedback, stability analysis, state-space modeling, and controllability. Understanding how complex behavior arises from structure and feedback.</p>
+                    <div class="status-tag">ANALYSIS_02</div>
+                    <h4>DYNAMICAL SYSTEM STABILITY</h4>
+                    <p style="font-size: 0.8rem; color: var(--text-dim);">Control theory teaches us about stability. Margie’s teacher is "stable" but stagnant. By removing the "human error" variable, the system eliminates the <i>innovative instability</i> that allows children to wonder, play, and deviate from a set path.</p>
                 </div>
 
                 <div class="data-card" style="border-color: var(--neon-pink);">
-                    <div class="status-tag">CORE_PILLAR_03</div>
-                    <h4>ENGINEERING ORIENTATION</h4>
-                    <p style="font-size: 0.8rem; color: var(--text-dim);">My focus is on algorithmic systems rather than hardware. Researching controller design and stability under limited computing power. My engineering view is "Math Modeling + Algorithm Design + System Verification."</p>
+                    <div class="status-tag">ANALYSIS_03</div>
+                    <h4>STRUCTURAL ANCHORS</h4>
+                    <p style="font-size: 0.8rem; color: var(--text-dim);">Just as I build mathematical frameworks before adding details, Margie uses the "Old Book" as a <b>Structural Anchor</b>. It provides a historical framework that makes her current digital reality seem hollow, proving that human progress requires analog roots.</p>
                 </div>
 
                 <div class="data-card" style="border-color: var(--neon-yellow);">
-                    <div class="status-tag">CORE_PILLAR_04</div>
-                    <h4>ALGORITHMS & DECISION</h4>
-                    <p style="font-size: 0.8rem; color: var(--text-dim);">Linking Control Theory with Decision Logic. I view optimal control and dynamic programming as "structured decision problems," emphasizing mathematical depth and real-world deployment.</p>
+                    <div class="status-tag">ANALYSIS_04</div>
+                    <h4>FEEDBACK LIMITATIONS</h4>
+                    <p style="font-size: 0.8rem; color: var(--text-dim);">The mechanical teacher provides <i>immediate feedback</i>, which is efficient for memorization but detrimental to deep understanding. True learning, much like engineering verification, requires the "delayed feedback" of discussion and shared social joy.</p>
                 </div>
             </div>
 
             <div class="accent-box">
-                <h4 style="color: var(--neon-pink); margin-bottom: 10px;">PHILOSOPHY & LONG-TERM VISION</h4>
-                <p style="font-size: 0.9rem; color: var(--text-primary); line-height: 1.6;">
-                    I adopt a highly autonomous, structure-driven learning method: building a complete knowledge framework first, then refining details layer by layer. My goal is to apply Control Theory to complex systems in non-ideal environments, pursuing stable and explainable solutions.
+                <h4 style="color: var(--neon-pink); margin-bottom: 10px;">PHILOSOPHICAL SYNTHESIS</h4>
+                <p style="font-size: 0.95rem; color: var(--text-primary); line-height: 1.6; font-style: italic;">
+                    "My target is to be a cross-disciplinary leader who builds stable, explainable solutions. Asimov’s story reminds me that even the most advanced engineering algorithms must remain 'Human-Centric.' An education system without 'The Fun They Had' is mathematically efficient but systematically broken."
                 </p>
             </div>
 
             <div class="terminal-block" style="font-size: 0.7rem; color: var(--text-dim);">
-                // SUMMARY: Priority on structure, principles, and long-term consistency.<br>
-                // TARGET: Future leader in cross-disciplinary scientific fields.
+                // SYSTEM LOG: HAIYANG XI REFLECTION COMPLETE.<br>
+                // CONCLUSION: Human variability is a feature, not a bug.
             </div>
         </section>
 
-        <!-- 07. MEDIA STREAM -->
+        <!-- 07. MEDIA STREAM (FIXED VIDEO LINK) -->
         <section id="visual" class="log-section">
             <h2 style="font-family: var(--font-display); color: var(--neon-blue); margin-bottom: 1rem;">MEDIA_STREAM: VISUAL_ARCHIVE</h2>
             <div class="terminal-block">
@@ -567,7 +535,7 @@
                 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border: 1px solid rgba(0, 210, 255, 0.3); background: #000;">
                     <iframe 
                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
-                        src="https://youtu.be/GKdMdHf_s5A?si=raQKY0PC6USrUUJa" 
+                        src="https://www.youtube.com/embed/GKdMdHf_s5A" 
                         title="The Fun They Had - Isaac Asimov" 
                         frameborder="0" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
@@ -583,7 +551,7 @@
             <div class="accent-box" style="margin-top: 3rem;">
                 <h4 style="color: var(--neon-yellow); margin-bottom: 10px;">// VIDEO ANALYSIS NOTES</h4>
                 <p style="font-size: 0.9rem; color: var(--text-dim);">
-                    This video archive provides a visual representation of the educational environment in 2157. Focus on the visual contrast between the cold, monochromatic 'Mechanical Teacher' and the vibrant, social atmosphere described in traditional school settings. The alienation of the student is palpable through the interface-driven interactions.
+                    This video archive serves as visual verification of the "Standardized Isolation" protocol. Observe the cold UI of the Mechanical Teacher—a system that optimizes for grades but ignores the emotional state of the user. For an engineer, this represents a system with inadequate sensor data (ignoring human emotion).
                 </p>
             </div>
         </section>
@@ -604,14 +572,12 @@
 
 <script>
     function switchLog(logId, btn) {
-        // Update navigation UI
         document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
 
         const sections = document.querySelectorAll('.log-section');
         const target = document.getElementById(logId);
 
-        // Transition out current section
         sections.forEach(s => {
             if(s.classList.contains('active')) {
                 s.style.opacity = '0';
@@ -623,7 +589,6 @@
             }
         });
 
-        // Transition in target section
         setTimeout(() => {
             target.style.visibility = 'visible';
             target.classList.add('active');
