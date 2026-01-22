@@ -212,11 +212,6 @@
             transition: 0.5s;
         }
 
-        .timeline-card:hover img {
-            filter: grayscale(0) brightness(1);
-            transform: scale(1.05);
-        }
-
         .knowledge-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -268,6 +263,81 @@
             background: rgba(255, 0, 127, 0.03); margin: 2rem 0; font-family: var(--font-mono);
         }
 
+        /* 05. Archive Specific Styles */
+        .archive-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .thematic-group {
+            border: 1px solid rgba(0, 210, 255, 0.2);
+            background: linear-gradient(135deg, rgba(5, 12, 24, 0.95), rgba(2, 4, 8, 1));
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .thematic-group::after {
+            content: "";
+            position: absolute;
+            top: 0; right: 0;
+            width: 150px; height: 150px;
+            background-image: radial-gradient(circle, var(--neon-blue) 1px, transparent 1px);
+            background-size: 15px 15px;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+
+        .category-header {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--neon-pink);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .category-header::before {
+            content: "";
+            width: 30px; height: 1px; background: var(--neon-pink);
+        }
+
+        .thematic-group h3 {
+            font-family: var(--font-display);
+            color: var(--neon-blue);
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+        }
+
+        .analysis-point {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+            border-left: 1px solid rgba(148, 163, 184, 0.2);
+        }
+
+        .analysis-point b {
+            color: var(--neon-yellow);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .symbol-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 1.5rem;
+        }
+
+        .symbol-item {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 1.5rem;
+            border: 1px dashed rgba(255, 240, 31, 0.2);
+        }
+
         @keyframes text-glitch {
             0%, 92%, 100% { transform: skew(0); }
             94% { transform: skew(10deg); text-shadow: 2px 0 var(--neon-pink); }
@@ -282,6 +352,7 @@
             .log-section { padding: 2rem; }
             .timeline-card { flex-direction: column; align-items: flex-start; }
             .img-container { width: 100%; height: 200px; }
+            .symbol-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -429,40 +500,35 @@
             </div>
         </section>
 
-        <!-- 04. FLOW LOGIC (UPDATED WITH FALLING ACTION & LONGER DESCRIPTIONS) -->
+        <!-- 04. FLOW LOGIC -->
         <section id="narrative" class="log-section">
             <h2 style="font-family: var(--font-display); color: var(--neon-pink); margin-bottom: 2rem;">FLOW_LOGIC: PLOT PROGRESSION</h2>
             <div style="position: relative; padding-left: 40px; border-left: 2px dashed rgba(0, 210, 255, 0.3); margin: 2rem 0;">
                 
-                <!-- Exposition -->
                 <div style="margin-bottom: 3.5rem; position: relative;">
                     <div style="position: absolute; left: -49px; top: 0; width: 16px; height: 16px; background: var(--bg-void); border: 3px solid var(--neon-pink); border-radius: 50%;"></div>
                     <h4 style="color: var(--neon-yellow);">EXPOSITION: THE ANOMALOUS DISCOVERY</h4>
                     <p class="analysis-text" style="font-size: 0.9rem;">In the year 2157, Margie records a momentous entry in her digital diary, noting that Tommy has discovered an authentic, yellowed paper book hidden away in his attic. This physical artifact serves as a jarring contrast to their standardized telebooks, introducing the audience to a future where traditional physical media has become a mysterious relic of a forgotten era.</p>
                 </div>
 
-                <!-- Rising Action -->
                 <div style="margin-bottom: 3.5rem; position: relative;">
                     <div style="position: absolute; left: -49px; top: 0; width: 16px; height: 16px; background: var(--bg-void); border: 3px solid var(--neon-pink); border-radius: 50%;"></div>
                     <h4 style="color: var(--neon-yellow);">RISING ACTION: THE COLLISION OF ERAS</h4>
                     <p class="analysis-text" style="font-size: 0.9rem;">As Tommy describes the ancient concept of schools where human teachers taught large groups of children within a single communal building, Margie experiences a profound internal conflict. She reflects on her own repetitive failures with the geography sector of her mechanical teacher and the subsequent repair by the County Inspector, a process that only reinforced her sense of isolation and mechanical drudgery.</p>
                 </div>
 
-                <!-- Climax -->
                 <div style="margin-bottom: 3.5rem; position: relative; border: 1px solid var(--neon-pink); padding: 1.5rem; background: rgba(255,0,127,0.05);">
                     <div style="position: absolute; left: -49px; top: 0; width: 16px; height: 16px; background: var(--bg-void); border: 3px solid var(--neon-pink); border-radius: 50%;"></div>
                     <h4 style="color: var(--neon-pink);">CLIMAX: THE PSYCHOLOGICAL DEPARTURE</h4>
                     <p class="analysis-text" style="font-size: 0.9rem;">The narrative reaches its psychological peak when Margie is forced to enter her private schoolroom, located directly next to her bedroom, to begin a solitary lesson on arithmetic. While the mechanical teacher’s cold screen flashes with instructions regarding proper fractions, Margie’s mind completely detaches from the present, fully immersing itself in the nostalgic vision of the past she just learned about.</p>
                 </div>
 
-                <!-- Falling Action (New Section) -->
                 <div style="margin-bottom: 3.5rem; position: relative;">
                     <div style="position: absolute; left: -49px; top: 0; width: 16px; height: 16px; background: var(--bg-void); border: 3px solid var(--neon-pink); border-radius: 50%;"></div>
                     <h4 style="color: var(--neon-yellow);">FALLING ACTION: THE YEARNING FOR CONNECTION</h4>
                     <p class="analysis-text" style="font-size: 0.9rem;">As the mechanical lesson continues rhythmically in the background, Margie's thoughts drift toward the social dynamics of previous centuries. She envisions the laughter and shouting of children in the schoolyard, the shared experiences of sitting together in class, and the unique bond of helping one another with homework—all essential human elements entirely absent from her own solitary, algorithmic existence.</p>
                 </div>
 
-                <!-- Resolution -->
                 <div style="margin-bottom: 3.5rem; position: relative;">
                     <div style="position: absolute; left: -49px; top: 0; width: 16px; height: 16px; background: var(--bg-void); border: 3px solid var(--neon-pink); border-radius: 50%;"></div>
                     <h4 style="color: var(--neon-yellow);">RESOLUTION: THE MELANCHOLIC REALIZATION</h4>
@@ -472,14 +538,72 @@
             </div>
         </section>
 
-        <!-- 05. THEMATIC SYNS -->
+        <!-- 05. THEMATIC SYNTHESIS ARCHIVE (EXPANDED SECTION) -->
         <section id="archive" class="log-section">
-            <h2 style="font-family: var(--font-display); color: var(--neon-green); margin-bottom: 2rem;">THEMATIC SYNTHESIS ARCHIVE</h2>
-            <div style="background: rgba(255,255,255,0.02); padding: 3rem; border: 1px solid #222;">
-                <h3 style="color: var(--neon-blue); margin-bottom: 1rem;">// THE LOSS OF INDIVIDUALITY</h3>
-                <p class="analysis-text">Standardized, mechanical education—despite being "adjusted to each child's mind"—erases the social bonding that defines human development. Efficiency becomes the enemy of experience.</p>
-                <h3 style="color: var(--neon-blue); margin-top: 3rem; margin-bottom: 1rem;">// TECHNOLOGICAL ALIENATION</h3>
-                <p class="analysis-text">The mechanical teacher is non-judgmental and patient, yet its perfection is alienating. Margie hates it because it lacks the "human error" that makes learning a shared, vulnerable process.</p>
+            <h2 style="font-family: var(--font-display); color: var(--neon-green); margin-bottom: 2.5rem;">THEMATIC_SYNTHESIS_ARCHIVE</h2>
+            
+            <div class="archive-layout">
+                <!-- PRIMARY THEMES -->
+                <div class="thematic-group">
+                    <div class="category-header">Core_Themes</div>
+                    <h3>// SYSTEMIC DEHUMANIZATION</h3>
+                    
+                    <div class="analysis-point">
+                        <b>The Erosion of Social Cohesion:</b>
+                        <p class="analysis-text">The systematic implementation of automated pedagogical interfaces inherently dismantles the sociological feedback loops required for authentic human development. By isolating the child in a domestic schoolroom, the state ensures mathematical efficiency at the direct cost of communal empathy and collective growth.</p>
+                    </div>
+
+                    <div class="analysis-point">
+                        <b>Individual Identity vs. Algorithmic Standardization:</b>
+                        <p class="analysis-text">Asimov posits that education "adjusted to each child's mind" is a paradox; while it claims to serve the individual, it actually reduces the student to a mere data point within a rigid, non-judgmental, yet spiritually hollow mechanical framework.</p>
+                    </div>
+                </div>
+
+                <!-- CONFLICT ANALYSIS -->
+                <div class="thematic-group" style="border-color: var(--neon-pink);">
+                    <div class="category-header" style="color: var(--neon-pink);">Conflict_Matrix</div>
+                    <h3 style="color: var(--neon-pink);">// EXISTENTIAL FRICTION</h3>
+
+                    <div class="analysis-point">
+                        <b>Past vs. Future (Analog vs. Digital):</b>
+                        <p class="analysis-text">The tension between the tangible, historical past—symbolized by the dust-laden, yellowed book—and the antiseptic, data-driven future creates a profound existential friction. Margie exists in a temporal limbo, physically bound to the 22nd century but spiritually anchored to the 20th.</p>
+                    </div>
+
+                    <div class="analysis-point">
+                        <b>Human Curiosity vs. Mechanical Rigidity:</b>
+                        <p class="analysis-text">This internal conflict manifests in Margie’s hatred for the "slot" where she must insert her homework. It represents the clash between her innate desire for intellectual discovery and the system’s requirement for transactional data submission.</p>
+                    </div>
+                </div>
+
+                <!-- SYMBOLIC DECODING -->
+                <div class="thematic-group" style="border-color: var(--neon-yellow);">
+                    <div class="category-header" style="color: var(--neon-yellow);">Symbolic_Decoding</div>
+                    <h3 style="color: var(--neon-yellow);">// ARTIFACTS & INTERFACES</h3>
+
+                    <div class="symbol-grid">
+                        <div class="symbol-item">
+                            <div style="color: var(--neon-yellow); margin-bottom: 10px; font-family: var(--font-mono); font-size: 0.8rem;">[SYMBOL_01] THE OLD BOOK</div>
+                            <p style="font-size: 0.85rem; line-height: 1.6; color: var(--text-dim);">A tangible link to a communal history. Its "crinkly" pages represent the messiness and permanence of human memory, contrasting with the ephemeral, scrolling text of the telebook.</p>
+                        </div>
+                        <div class="symbol-item">
+                            <div style="color: var(--neon-yellow); margin-bottom: 10px; font-family: var(--font-mono); font-size: 0.8rem;">[SYMBOL_02] THE SLOT</div>
+                            <p style="font-size: 0.85rem; line-height: 1.6; color: var(--text-dim);">The literal and figurative mouth of the machine. It symbolizes the industrialization of the home, where personal output is consumed by a nameless institutional entity.</p>
+                        </div>
+                        <div class="symbol-item">
+                            <div style="color: var(--neon-yellow); margin-bottom: 10px; font-family: var(--font-mono); font-size: 0.8rem;">[SYMBOL_03] THE COUNTY INSPECTOR</div>
+                            <p style="font-size: 0.85rem; line-height: 1.6; color: var(--text-dim);">The "Maintenance" of the status quo. His presence proves that even when the machine is "repaired," the fundamental isolation of the system remains unchallenged.</p>
+                        </div>
+                        <div class="symbol-item">
+                            <div style="color: var(--neon-yellow); margin-bottom: 10px; font-family: var(--font-mono); font-size: 0.8rem;">[SYMBOL_04] THE BLANK SCREEN</div>
+                            <p style="font-size: 0.85rem; line-height: 1.6; color: var(--text-dim);">Represents the void of human connection. Its cold glow is a barrier between Margie and the "Fun" she imagines, highlighting the absence of human warmth in her environment.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="terminal-block" style="margin-top: 3rem; border-color: var(--neon-green); color: var(--neon-green);">
+                > SYNTHESIS COMPLETE: THE "OLD BOOK" IS THE KEY TO REDISCOVERING HUMANITY IN A POST-SOCIAL AGE.<br>
+                > RECOMMENDATION: RE-EVALUATE THE RATIO OF EFFICIENCY TO EMPATHY.
             </div>
         </section>
 
