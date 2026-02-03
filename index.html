@@ -1,383 +1,756 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ALL SUMMER IN A DAY — Deep Literary Digital Thesis</title>
-  <style>
-    :root{
-      --bg: #030712;
-      --card-bg: rgba(255, 255, 255, 0.03);
-      --card-border: rgba(255, 255, 255, 0.08);
-      --text: #f8fafc;
-      --muted: #94a3b8;
-      --rose: #f43f5e;
-      --orange: #fb923c;
-      --amber: #f59e0b;
-      --blue: #3b82f6;
-      --indigo: #6366f1;
-      --shadow: 0 25px 60px -15px rgba(0,0,0,0.5);
-      --radius: 2rem;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CYBER-LOG: HAIYANG XI | THE FUN THEY HAD</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;700&family=Orbitron:wght@400;700;900&family=JetBrains+Mono:wght@300;500&display=swap" rel="stylesheet">
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      font-family: "Inter", system-ui, -apple-system, sans-serif;
-      color: var(--text);
-      background: var(--bg);
-      line-height: 1.8;
-      overflow-x: hidden;
-    }
+    <style>
+        /* =========================================
+           1. CORE SYSTEM VARIABLES & THEMES
+           ========================================= */
+        :root {
+            --bg-void: #020408;
+            --bg-panel: rgba(5, 12, 24, 0.9);
+            --text-primary: #e0f2fe;
+            --text-dim: #94a3b8;
+            
+            --neon-blue: #00d2ff;
+            --neon-green: #39ff14;
+            --neon-yellow: #fff01f;
+            --neon-pink: #ff007f;
+            --critical-red: #ff3131;
 
-    /* --- Background Texture: Trauma & Rain Streaks --- */
-    body::before {
-      content: ""; position: fixed; inset: 0;
-      background-image: 
-        radial-gradient(circle at 20% 30%, rgba(244,63,94,0.05) 0%, transparent 50%),
-        radial-gradient(circle at 80% 70%, rgba(59,130,246,0.05) 0%, transparent 50%);
-      pointer-events: none; z-index: -1;
-    }
+            --font-display: 'Orbitron', sans-serif;
+            --font-body: 'Oxanium', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
 
-    /* --- Hero Section --- */
-    .hero {
-      position: relative; height: 100vh;
-      display: flex; align-items: center; justify-content: center;
-      background: radial-gradient(circle at center, #0f172a 0%, #030712 100%);
-      overflow: hidden; text-align: center;
-    }
-    .rain-container { position: absolute; inset: 0; pointer-events: none; z-index: 2; opacity: 0.4; }
-    .drop { position: absolute; width: 1px; height: 120px; background: linear-gradient(transparent, #94a3b8); animation: fall linear infinite; }
-    @keyframes fall { to { transform: translateY(110vh); } }
+        * { box-sizing: border-box; margin: 0; padding: 0; cursor: crosshair; }
 
-    .hero-content { z-index: 10; position: relative; max-width: 900px; padding: 0 2rem; }
-    .pill {
-      display: inline-block; padding: 0.7rem 2rem;
-      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 99px; font-size: 0.8rem; font-weight: 800;
-      letter-spacing: 0.5em; text-transform: uppercase; color: var(--rose);
-      margin-bottom: 2.5rem; backdrop-filter: blur(10px);
-    }
-    .hero-title {
-      font-size: clamp(3.5rem, 10vw, 9rem); font-weight: 900; line-height: 0.8;
-      letter-spacing: -0.05em; margin-bottom: 2rem;
-    }
-    .hero-title span {
-      background: linear-gradient(to right, var(--rose), var(--orange), var(--amber));
-      -webkit-background-clip: text; background-clip: text; color: transparent;
-      font-family: "Playfair Display", serif; font-style: italic; text-transform: none;
-    }
-    .hero-sub { letter-spacing: 0.4em; color: var(--muted); font-size: 1.1rem; text-transform: uppercase; margin-top: 2rem; }
+        body {
+            background-color: var(--bg-void);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            height: 100vh;
+            overflow: hidden;
+            background-image: 
+                radial-gradient(circle at 50% 50%, rgba(0, 210, 255, 0.05) 0%, transparent 80%),
+                linear-gradient(rgba(57, 255, 20, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(57, 255, 20, 0.02) 1px, transparent 1px);
+            background-size: 100% 100%, 40px 40px, 40px 40px;
+        }
 
-    /* --- Container Layout --- */
-    .container { width: min(1200px, 92vw); margin: 0 auto; }
-    .section-padding { padding: 12rem 0; }
-    .space-y { display: flex; flex-direction: column; gap: 12rem; }
+        .scanlines {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), 
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02));
+            z-index: 9999;
+            background-size: 100% 3px, 3px 100%;
+            pointer-events: none;
+            opacity: 0.4;
+        }
 
-    /* --- Section Headers --- */
-    .section-header {
-      display: flex; align-items: center; gap: 2rem; margin-bottom: 5rem;
-      padding: 2rem 3.5rem; border-radius: 3rem; background: rgba(255,255,255,0.02);
-      border: 1px solid var(--card-border); box-shadow: var(--shadow);
-    }
-    .icon-box { 
-      width: 65px; height: 65px; border-radius: 1.5rem; 
-      display: grid; place-items: center; font-size: 1.8rem;
-      background: linear-gradient(135deg, var(--rose), var(--amber));
-    }
-    .section-header h2 { font-size: 2.5rem; font-weight: 900; margin: 0; letter-spacing: -0.02em; text-transform: uppercase; }
+        /* =========================================
+           2. ARCHITECTURAL LAYOUT
+           ========================================= */
+        .system-wrapper {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            height: 100vh;
+            width: 100vw;
+            border: 2px solid var(--neon-blue);
+            box-shadow: inset 0 0 50px rgba(0, 210, 255, 0.1);
+        }
 
-    /* --- Card Design: Glassmorphism --- */
-    .card {
-      background: var(--card-bg); padding: 4.5rem; border-radius: var(--radius);
-      border: 1px solid var(--card-border); backdrop-filter: blur(20px);
-      transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1); position: relative; overflow: hidden;
-    }
-    .card::before {
-      content: ""; position: absolute; top: 0; left: 0; width: 5px; height: 100%;
-      background: linear-gradient(to bottom, var(--rose), transparent);
-    }
-    .card:hover { transform: translateY(-10px); border-color: rgba(244,63,94,0.3); background: rgba(255,255,255,0.05); }
-    
-    .card h3 { font-size: 2.2rem; font-weight: 900; margin-bottom: 2rem; color: #fff; letter-spacing: -0.02em; }
-    .card p { color: var(--muted); font-size: 1.2rem; line-height: 2; margin-bottom: 0; }
-    .highlight-label { color: var(--rose); font-weight: 800; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 0.25em; display: block; margin-bottom: 1rem; }
+        .nav-sidebar {
+            background: rgba(1, 2, 4, 0.98);
+            border-right: 2px solid var(--neon-blue);
+            display: flex;
+            flex-direction: column;
+            padding: 2.5rem 1.5rem;
+            z-index: 100;
+        }
 
-    /* --- Plot Chart SVG --- */
-    .plot-container { background: rgba(0,0,0,0.2); padding: 5rem; border-radius: 3rem; border: 1px solid var(--card-border); }
-    .chart-wrapper { width: 100%; height: 400px; position: relative; margin: 4rem 0; }
-    .chart-svg { width: 100%; height: 100%; overflow: visible; }
-    .chart-line { fill: none; stroke: var(--indigo); stroke-width: 5; stroke-dasharray: 1500; animation: draw 5s forwards; }
-    @keyframes draw { from { stroke-dashoffset: 1500; } to { stroke-dashoffset: 0; } }
-    .chart-point { fill: var(--bg); stroke: var(--indigo); stroke-width: 4; transition: 0.4s; cursor: pointer; }
-    .chart-point:hover { fill: var(--rose); stroke: #fff; r: 12; }
-    .chart-text { fill: var(--muted); font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; }
-    
-    #plot-display-card {
-      margin-top: 3rem; padding: 3.5rem; background: rgba(255,255,255,0.03); border-radius: 2rem;
-      border-left: 10px solid var(--indigo); animation: fadeIn 0.5s ease;
-    }
-    @keyframes fadeIn { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
+        .system-identity {
+            margin-bottom: 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(0, 210, 255, 0.2);
+            padding-bottom: 1rem;
+        }
 
-    /* --- Video Interactive Frame --- */
-    .video-frame {
-      aspect-ratio: 16/9; background: #000; border-radius: 3.5rem;
-      overflow: hidden; border: 15px solid rgba(255,255,255,0.03);
-      box-shadow: var(--shadow-lg); position: relative; cursor: pointer;
-    }
-    .video-overlay {
-      position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
-      background: linear-gradient(rgba(3,7,18,0.4), rgba(3,7,18,0.8)), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2000');
-      background-size: cover; z-index: 100; transition: 0.6s;
-    }
-    .play-circle {
-      width: 120px; height: 120px; border-radius: 50%; background: #fff;
-      display: grid; place-items: center; font-size: 3rem; color: var(--bg);
-      transition: 0.4s; box-shadow: 0 0 50px rgba(244,63,94,0.4);
-    }
-    .video-frame:hover .play-circle { transform: scale(1.1); background: var(--rose); color: #fff; }
+        .glitch-title {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            color: var(--neon-yellow);
+            letter-spacing: 2px;
+            animation: text-glitch 5s infinite;
+        }
 
-    /* --- Reflection Block --- */
-    .reflection-box {
-      background: linear-gradient(135deg, #0f172a 0%, #030712 100%);
-      color: white; padding: 7rem; border-radius: 4rem; position: relative;
-      border: 1px solid var(--card-border); box-shadow: var(--shadow-lg);
-    }
-    .reflection-box blockquote { font-size: 1.3rem; font-weight: 300; line-height: 2.2; margin: 0; color: #cbd5e1; }
-    .reflection-box b { color: var(--rose); font-weight: 800; text-shadow: 0 0 15px rgba(244,63,94,0.3); }
+        .nav-links { display: flex; flex-direction: column; gap: 8px; }
 
-    .img-academic { border-radius: 50%; aspect-ratio: 1/1; border: 10px solid var(--card-border); box-shadow: var(--shadow); object-fit: cover; transition: 0.5s; }
-    .img-academic:hover { border-color: var(--rose); transform: rotate(5deg); }
+        .nav-btn {
+            background: transparent;
+            border: 1px solid rgba(0, 210, 255, 0.1);
+            color: var(--text-dim);
+            padding: 12px 15px;
+            text-align: left;
+            font-family: var(--font-display);
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
 
-    @media (max-width: 900px) {
-      .grid-2 { grid-template-columns: 1fr; }
-      .section-header { padding: 1.5rem; flex-direction: column; text-align: center; }
-      .plot-container { padding: 2rem; }
-    }
-  </style>
+        .nav-btn:hover, .nav-btn.active {
+            border-color: var(--neon-green);
+            color: #fff;
+            background: rgba(57, 255, 20, 0.05);
+            padding-left: 24px;
+            box-shadow: -6px 0 0 var(--neon-green);
+        }
+
+        /* Main Content Stage */
+        .display-core {
+            position: relative;
+            perspective: 1500px;
+            overflow: hidden;
+            background: radial-gradient(circle at top right, rgba(0, 210, 255, 0.03), transparent);
+        }
+
+        .log-section {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            padding: 5rem;
+            opacity: 0;
+            transform: translateY(30px) scale(0.98);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            pointer-events: none;
+            overflow-y: auto;
+            visibility: hidden;
+        }
+
+        .log-section.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: auto;
+            visibility: visible;
+        }
+
+        /* =========================================
+           3. UI COMPONENTS
+           ========================================= */
+        
+        .author-timeline {
+            position: relative;
+            margin: 4rem 0;
+            padding-left: 50px;
+        }
+
+        .author-timeline::before {
+            content: "";
+            position: absolute;
+            left: 20px;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--neon-yellow), var(--neon-blue), var(--neon-pink));
+        }
+
+        .timeline-card {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 4rem;
+            position: relative;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 20px;
+            border: 1px solid rgba(0, 210, 255, 0.1);
+            transition: 0.3s;
+        }
+
+        .timeline-card::before {
+            content: "";
+            position: absolute;
+            left: -37px;
+            width: 16px;
+            height: 16px;
+            background: var(--bg-void);
+            border: 3px solid var(--neon-yellow);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--neon-yellow);
+        }
+
+        .year-label {
+            font-family: var(--font-display);
+            color: var(--neon-yellow);
+            font-size: 1.4rem;
+            min-width: 100px;
+            text-shadow: 0 0 5px var(--neon-yellow);
+        }
+
+        .img-container {
+            width: 200px;
+            height: 140px;
+            border: 1px solid var(--neon-blue);
+            padding: 4px;
+            background: #000;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(1) brightness(0.7);
+            transition: 0.5s;
+        }
+
+        .knowledge-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 2rem;
+        }
+
+        .data-card {
+            background: var(--bg-panel);
+            border: 1px solid rgba(0, 210, 255, 0.2);
+            padding: 1.5rem;
+            transition: 0.4s;
+            display: flex; flex-direction: column; gap: 12px;
+            position: relative;
+        }
+
+        .data-card:hover {
+            border-color: var(--neon-yellow);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(255, 240, 31, 0.1);
+        }
+
+        .status-tag {
+            font-size: 0.55rem;
+            padding: 2px 8px;
+            border: 1px solid var(--neon-green);
+            color: var(--neon-green);
+            width: fit-content;
+            font-family: var(--font-mono);
+        }
+
+        .terminal-block {
+            background: #000; border: 1px solid #222; padding: 1.2rem;
+            font-family: var(--font-mono); font-size: 0.8rem;
+            color: var(--neon-green); margin: 2rem 0;
+            box-shadow: inset 0 0 15px rgba(57, 255, 20, 0.05);
+        }
+
+        h1.glitch-large {
+            font-size: 4.5rem; font-family: var(--font-display);
+            color: var(--neon-yellow); margin-bottom: 2rem;
+            line-height: 0.85; text-transform: uppercase;
+        }
+
+        .analysis-text { font-size: 1.05rem; line-height: 1.8; color: var(--text-primary); max-width: 850px; margin-bottom: 1.5rem; }
+
+        .accent-box {
+            border-left: 5px solid var(--neon-pink); padding: 1.5rem;
+            background: rgba(255, 0, 127, 0.03); margin: 2rem 0; font-family: var(--font-mono);
+        }
+
+        /* 05. Archive Specific Styles */
+        .archive-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .thematic-group {
+            border: 1px solid rgba(0, 210, 255, 0.2);
+            background: linear-gradient(135deg, rgba(5, 12, 24, 0.95), rgba(2, 4, 8, 1));
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .thematic-group::after {
+            content: "";
+            position: absolute;
+            top: 0; right: 0;
+            width: 150px; height: 150px;
+            background-image: radial-gradient(circle, var(--neon-blue) 1px, transparent 1px);
+            background-size: 15px 15px;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+
+        .category-header {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--neon-pink);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .category-header::before {
+            content: "";
+            width: 30px; height: 1px; background: var(--neon-pink);
+        }
+
+        .thematic-group h3 {
+            font-family: var(--font-display);
+            color: var(--neon-blue);
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+        }
+
+        .analysis-point {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+            border-left: 1px solid rgba(148, 163, 184, 0.2);
+        }
+
+        .analysis-point b {
+            color: var(--neon-yellow);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .symbol-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 1.5rem;
+        }
+
+        .symbol-item {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 1.5rem;
+            border: 1px dashed rgba(255, 240, 31, 0.2);
+        }
+
+        @keyframes text-glitch {
+            0%, 92%, 100% { transform: skew(0); }
+            94% { transform: skew(10deg); text-shadow: 2px 0 var(--neon-pink); }
+            96% { transform: skew(-10deg); text-shadow: -2px 0 var(--neon-blue); }
+        }
+
+        @media (max-width: 1000px) {
+            .system-wrapper { grid-template-columns: 1fr; }
+            .nav-sidebar { height: auto; flex-direction: row; overflow-x: auto; padding: 15px; }
+            .nav-links { flex-direction: row; }
+            .system-identity { display: none; }
+            .log-section { padding: 2rem; }
+            .timeline-card { flex-direction: column; align-items: flex-start; }
+            .img-container { width: 100%; height: 200px; }
+            .symbol-grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
 
-  <!-- HERO -->
-  <header class="hero">
-    <div id="rain-box" class="rain-container"></div>
-    <div class="haze"></div>
-    <div class="hero-content">
-      <div class="pill">ENG4U Academic Culminating Project</div>
-      <h1 class="hero-title">ALL SUMMER<br><span>in a Day</span></h1>
-      <p class="hero-sub">The Architecture of Collective Guilt & Trauma</p>
-      <div style="margin-top:5rem; font-weight: 900; letter-spacing: 0.3em; border-bottom: 3px solid var(--rose); display: inline-block; padding-bottom: 12px; font-size: 1.2rem;">BY GUO CEN</div>
+<div class="scanlines"></div>
+
+<div class="system-wrapper">
+    <!-- NAV SIDEBAR -->
+    <aside class="nav-sidebar">
+        <div class="system-identity">
+            <div class="glitch-title">HAIYANG_XI</div>
+            <div style="font-size: 0.55rem; color: var(--neon-blue); margin-top: 5px; font-family: var(--font-mono);">AUTH: ENG4U_RESEARCH_NODE</div>
+        </div>
+        
+        <nav class="nav-links">
+            <button class="nav-btn active" onclick="switchLog('init', this)">01. INITIALIZATION</button>
+            <button class="nav-btn" onclick="switchLog('author', this)">02. AUTHOR_ARCHIVE</button>
+            <button class="nav-btn" onclick="switchLog('elements', this)">03. NEURAL_NODES</button>
+            <button class="nav-btn" onclick="switchLog('narrative', this)">04. FLOW_LOGIC</button>
+            <button class="nav-btn" onclick="switchLog('archive', this)">05. THEMATIC_SYNS</button>
+            <button class="nav-btn" onclick="switchLog('critical', this)">06. SYSTEM_REFLECT</button>
+            <button class="nav-btn" onclick="switchLog('visual', this)">07. MEDIA_STREAM</button>
+        </nav>
+
+        <div style="margin-top: auto; font-family: var(--font-mono); font-size: 0.6rem; color: var(--text-dim);">
+            ENCRYPTION: AES-256<br>
+            LOCATION: TORONTO_NODE<br>
+            STATUS: ACTIVE
+        </div>
+    </aside>
+
+    <!-- MAIN DISPLAY -->
+    <main class="display-core">
+        
+        <!-- 01. INITIALIZATION -->
+        <section id="init" class="log-section active">
+            <div class="terminal-block">
+                > BOOTING LITERARY_ANALYSIS_ENGINE_V4...<br>
+                > LOADING "THE FUN THEY HAD" (ASIMOV_1951)...<br>
+                > PRIMARY CONFLICT DETECTED: [HUMAN_VS_MECHANICAL_CLOSED_LOOP]
+            </div>
+            
+            <h1 class="glitch-large">THE FUN<br>THEY HAD</h1>
+            
+            <div style="display: grid; grid-template-columns: 1.6fr 1fr; gap: 40px;">
+                <div>
+                    <p class="analysis-text" style="color: var(--neon-green); font-weight: 700;">
+                        PROTOCOL: Examining the Social Cost of Educational Automation.
+                    </p>
+                    <p class="analysis-text">
+                        Set in May 2157, Isaac Asimov’s seminal work serves as a cautionary tale about the sterilization of human curiosity. The "Old Book" acts as a temporal anchor, forcing the protagonist, Margie, to reconcile her isolated reality with a communal, human-centric past.
+                    </p>
+                    <div class="accent-box">
+                        <span style="color: var(--neon-pink); font-weight: bold;">[CORE_PREMISE]</span>: 
+                        Technology, when stripped of social context, creates an efficient but spiritually hollow existence.
+                    </div>
+                </div>
+                <div style="border: 1px solid var(--neon-blue); padding: 6px; background: #000;">
+                    <img src="https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" style="width:100%; filter: saturate(0.2) contrast(1.2); opacity: 0.8;" alt="Ancient Book" />
+                    <div style="padding: 10px; font-size: 0.6rem; color: var(--neon-blue); font-family: var(--font-mono);">ARTIFACT_IMG: ARCHAIC_PRINT_MEDIA</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 02. AUTHOR ARCHIVE -->
+        <section id="author" class="log-section">
+            <h2 style="font-family: var(--font-display); color: var(--neon-yellow); margin-bottom: 1rem;">AUTHOR_ARCHIVE: ISAAC ASIMOV</h2>
+            <div class="terminal-block">
+                > DECRYPTING BIOGRAPHICAL_TIMELINE...<br>
+                > STATUS: 500+ VOLUMES WRITTEN | THE "BIG THREE" SCI-FI ARCHITECT.
+            </div>
+
+            <div class="author-timeline">
+                <div class="timeline-card">
+                    <div class="year-label">1920</div>
+                    <div class="img-container">
+                        <img src="https://images.unsplash.com/photo-1527176930608-09cb256ab504?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Birth">
+                    </div>
+                    <div class="timeline-info">
+                        <h4>ORIGIN_DATA</h4>
+                        <p>Born in Petrovichi, Russia. Emigrated to the United States at age three, setting the stage for a life dedicated to Science Fiction and scientific pedagogy.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-card">
+                    <div class="year-label">1942</div>
+                    <div class="img-container">
+                        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Foundation">
+                    </div>
+                    <div class="timeline-info">
+                        <h4>FOUNDATION_ERA</h4>
+                        <p>Begins the "Foundation" series and formulates the "Three Laws of Robotics," establishing himself as a visionary of human-machine interaction.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-card" style="border: 2px solid var(--neon-pink); box-shadow: 0 0 15px rgba(255,0,127,0.1);">
+                    <div class="year-label" style="color: var(--neon-pink);">1951</div>
+                    <div class="img-container">
+                        <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="The Fun They Had">
+                    </div>
+                    <div class="timeline-info">
+                        <h4 style="color: var(--neon-pink);">THE_FUN_THEY_HAD</h4>
+                        <p>Writes this story originally for a children's newspaper. Paradoxically, it becomes his most famous commentary on the future of institutionalized education.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-card">
+                    <div class="year-label">1992</div>
+                    <div class="img-container">
+                        <img src="https://images.unsplash.com/photo-1457369804613-52c61a468e7d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Legacy">
+                    </div>
+                    <div class="timeline-info">
+                        <h4>END_OF_SEQUENCE</h4>
+                        <p>Asimov passes away in New York, leaving a legacy as a Master of "Hard Science" fiction, having predicted the isolation of remote learning.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 03. NEURAL NODES -->
+        <section id="elements" class="log-section">
+            <h2 style="font-family: var(--font-display); color: var(--neon-blue); margin-bottom: 2rem;">NEURAL NODES: CHARACTER & SETTING</h2>
+            <div class="knowledge-grid">
+                <div class="data-card" onclick="openModal('Margie (11 years old) is the empathic core. Her primary motivation is a subconscious desire for shared experience. She represents the target of Asimov\'s warning—the child of a future that has forgotten how to laugh together.')">
+                    <div class="status-tag">SUBJECT_01</div>
+                    <h4>MARGIE</h4>
+                    <p style="font-size: 0.75rem; color: var(--text-dim);">The protagonist trapped in a feedback loop of mechanical education.</p>
+                </div>
+                <div class="data-card" onclick="openModal('Tommy (13 years old) is the catalyst. Finding the book, he introduces the historical contrast. He is more adapted to the telebook-era than Margie, acting as a factual guide to the past.')">
+                    <div class="status-tag">SUBJECT_02</div>
+                    <h4>TOMMY</h4>
+                    <p style="font-size: 0.75rem; color: var(--text-dim);">The bridge between the digital present and the analog history.</p>
+                </div>
+                <div class="data-card" onclick="openModal('The mechanical teacher is the physical embodiment of isolation. It is logically perfect but emotionally zero. Its presence in the home room blurs the boundary between personal sanctuary and institutional control.')">
+                    <div class="status-tag">ANTAGONIST</div>
+                    <h4>THE TELE-TEACHER</h4>
+                    <p style="font-size: 0.75rem; color: var(--text-dim);">A cold interface of algorithmic reductionism.</p>
+                </div>
+                <div class="data-card" onclick="openModal('Setting (Year 2157): A world where education is decentralized and solitary. The schoolroom is physically located next to the bedroom, symbolizing the industrialization of the home.')">
+                    <div class="status-tag">ENV_DATA</div>
+                    <h4>STATION_AXIS</h4>
+                    <p style="font-size: 0.75rem; color: var(--text-dim);">The domestic prison of individualized learning.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 04. FLOW LOGIC -->
+        <section id="narrative" class="log-section">
+            <h2 style="font-family: var(--font-display); color: var(--neon-pink); margin-bottom: 2rem;">FLOW_LOGIC: PLOT PROGRESSION</h2>
+            <div style="position: relative; padding-left: 40px; border-left: 2px dashed rgba(0, 210, 255, 0.3); margin: 2rem 0;">
+                
+                <div style="margin-bottom: 3.5rem; position: relative;">
+                    <div style="position: absolute; left: -49px; top: 0; width: 16px; height: 16px; background: var(--bg-void); border: 3px solid var(--neon-pink); border-radius: 50%;"></div>
+                    <h4 style="color: var(--neon-yellow);">EXPOSITION: THE ANOMALOUS DISCOVERY</h4>
+                    <p class="analysis-text" style="font-size: 0.9rem;">In the year 2157, Margie records a momentous entry in her digital diary, noting that Tommy has discovered an authentic, yellowed paper book hidden away in his attic. This physical artifact serves as a jarring contrast to their standardized telebooks, introducing the audience to a future where traditional physical media has become a mysterious relic of a forgotten era.</p>
+                </div>
+
+                <div style="margin-bottom: 3.5rem; position: relative;">
+                    <div style="position: absolute; left: -49px; top: 0; width: 16px; height: 16px; background: var(--bg-void); border: 3px solid var(--neon-pink); border-radius: 50%;"></div>
+                    <h4 style="color: var(--neon-yellow);">RISING ACTION: THE COLLISION OF ERAS</h4>
+                    <p class="analysis-text" style="font-size: 0.9rem;">As Tommy describes the ancient concept of schools where human teachers taught large groups of children within a single communal building, Margie experiences a profound internal conflict. She reflects on her own repetitive failures with the geography sector of her mechanical teacher and the subsequent repair by the County Inspector, a process that only reinforced her sense of isolation and mechanical drudgery.</p>
+                </div>
+
+                <div style="margin-bottom: 3.5rem; position: relative; border: 1px solid var(--neon-pink); padding: 1.5rem; background: rgba(255,0,127,0.05);">
+                    <div style="position: absolute; left: -49px; top: 0; width: 16px; height: 16px; background: var(--bg-void); border: 3px solid var(--neon-pink); border-radius: 50%;"></div>
+                    <h4 style="color: var(--neon-pink);">CLIMAX: THE PSYCHOLOGICAL DEPARTURE</h4>
+                    <p class="analysis-text" style="font-size: 0.9rem;">The narrative reaches its psychological peak when Margie is forced to enter her private schoolroom, located directly next to her bedroom, to begin a solitary lesson on arithmetic. While the mechanical teacher’s cold screen flashes with instructions regarding proper fractions, Margie’s mind completely detaches from the present, fully immersing itself in the nostalgic vision of the past she just learned about.</p>
+                </div>
+
+                <div style="margin-bottom: 3.5rem; position: relative;">
+                    <div style="position: absolute; left: -49px; top: 0; width: 16px; height: 16px; background: var(--bg-void); border: 3px solid var(--neon-pink); border-radius: 50%;"></div>
+                    <h4 style="color: var(--neon-yellow);">FALLING ACTION: THE YEARNING FOR CONNECTION</h4>
+                    <p class="analysis-text" style="font-size: 0.9rem;">As the mechanical lesson continues rhythmically in the background, Margie's thoughts drift toward the social dynamics of previous centuries. She envisions the laughter and shouting of children in the schoolyard, the shared experiences of sitting together in class, and the unique bond of helping one another with homework—all essential human elements entirely absent from her own solitary, algorithmic existence.</p>
+                </div>
+
+                <div style="margin-bottom: 3.5rem; position: relative;">
+                    <div style="position: absolute; left: -49px; top: 0; width: 16px; height: 16px; background: var(--bg-void); border: 3px solid var(--neon-pink); border-radius: 50%;"></div>
+                    <h4 style="color: var(--neon-yellow);">RESOLUTION: THE MELANCHOLIC REALIZATION</h4>
+                    <p class="analysis-text" style="font-size: 0.9rem;">The story concludes with a poignant moment of realization as Margie sighs, lost in a daydream about the vibrant educational communities of the past. She is left with a deep, aching sense of melancholy, contemplating the emotional and social richness of the collective learning experience and specifically yearning for the genuine, human "fun they had."</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 05. THEMATIC SYNTHESIS ARCHIVE (EXPANDED SECTION) -->
+        <section id="archive" class="log-section">
+            <h2 style="font-family: var(--font-display); color: var(--neon-green); margin-bottom: 2.5rem;">THEMATIC_SYNTHESIS_ARCHIVE</h2>
+            
+            <div class="archive-layout">
+                <!-- PRIMARY THEMES -->
+                <div class="thematic-group">
+                    <div class="category-header">Core_Themes</div>
+                    <h3>// SYSTEMIC DEHUMANIZATION</h3>
+                    
+                    <div class="analysis-point">
+                        <b>The Erosion of Social Cohesion:</b>
+                        <p class="analysis-text">The systematic implementation of automated pedagogical interfaces inherently dismantles the sociological feedback loops required for authentic human development. By isolating the child in a domestic schoolroom, the state ensures mathematical efficiency at the direct cost of communal empathy and collective growth.</p>
+                    </div>
+
+                    <div class="analysis-point">
+                        <b>Individual Identity vs. Algorithmic Standardization:</b>
+                        <p class="analysis-text">Asimov posits that education "adjusted to each child's mind" is a paradox; while it claims to serve the individual, it actually reduces the student to a mere data point within a rigid, non-judgmental, yet spiritually hollow mechanical framework.</p>
+                    </div>
+                </div>
+
+                <!-- CONFLICT ANALYSIS -->
+                <div class="thematic-group" style="border-color: var(--neon-pink);">
+                    <div class="category-header" style="color: var(--neon-pink);">Conflict_Matrix</div>
+                    <h3 style="color: var(--neon-pink);">// EXISTENTIAL FRICTION</h3>
+
+                    <div class="analysis-point">
+                        <b>Past vs. Future (Analog vs. Digital):</b>
+                        <p class="analysis-text">The tension between the tangible, historical past—symbolized by the dust-laden, yellowed book—and the antiseptic, data-driven future creates a profound existential friction. Margie exists in a temporal limbo, physically bound to the 22nd century but spiritually anchored to the 20th.</p>
+                    </div>
+
+                    <div class="analysis-point">
+                        <b>Human Curiosity vs. Mechanical Rigidity:</b>
+                        <p class="analysis-text">This internal conflict manifests in Margie’s hatred for the "slot" where she must insert her homework. It represents the clash between her innate desire for intellectual discovery and the system’s requirement for transactional data submission.</p>
+                    </div>
+                </div>
+
+                <!-- SYMBOLIC DECODING -->
+                <div class="thematic-group" style="border-color: var(--neon-yellow);">
+                    <div class="category-header" style="color: var(--neon-yellow);">Symbolic_Decoding</div>
+                    <h3 style="color: var(--neon-yellow);">// ARTIFACTS & INTERFACES</h3>
+
+                    <div class="symbol-grid">
+                        <div class="symbol-item">
+                            <div style="color: var(--neon-yellow); margin-bottom: 10px; font-family: var(--font-mono); font-size: 0.8rem;">[SYMBOL_01] THE OLD BOOK</div>
+                            <p style="font-size: 0.85rem; line-height: 1.6; color: var(--text-dim);">A tangible link to a communal history. Its "crinkly" pages represent the messiness and permanence of human memory, contrasting with the ephemeral, scrolling text of the telebook.</p>
+                        </div>
+                        <div class="symbol-item">
+                            <div style="color: var(--neon-yellow); margin-bottom: 10px; font-family: var(--font-mono); font-size: 0.8rem;">[SYMBOL_02] THE SLOT</div>
+                            <p style="font-size: 0.85rem; line-height: 1.6; color: var(--text-dim);">The literal and figurative mouth of the machine. It symbolizes the industrialization of the home, where personal output is consumed by a nameless institutional entity.</p>
+                        </div>
+                        <div class="symbol-item">
+                            <div style="color: var(--neon-yellow); margin-bottom: 10px; font-family: var(--font-mono); font-size: 0.8rem;">[SYMBOL_03] THE COUNTY INSPECTOR</div>
+                            <p style="font-size: 0.85rem; line-height: 1.6; color: var(--text-dim);">The "Maintenance" of the status quo. His presence proves that even when the machine is "repaired," the fundamental isolation of the system remains unchallenged.</p>
+                        </div>
+                        <div class="symbol-item">
+                            <div style="color: var(--neon-yellow); margin-bottom: 10px; font-family: var(--font-mono); font-size: 0.8rem;">[SYMBOL_04] THE BLANK SCREEN</div>
+                            <p style="font-size: 0.85rem; line-height: 1.6; color: var(--text-dim);">Represents the void of human connection. Its cold glow is a barrier between Margie and the "Fun" she imagines, highlighting the absence of human warmth in her environment.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="terminal-block" style="margin-top: 3rem; border-color: var(--neon-green); color: var(--neon-green);">
+                > SYNTHESIS COMPLETE: THE "OLD BOOK" IS THE KEY TO REDISCOVERING HUMANITY IN A POST-SOCIAL AGE.<br>
+                > RECOMMENDATION: RE-EVALUATE THE RATIO OF EFFICIENCY TO EMPATHY.
+            </div>
+        </section>
+
+        <!-- 06. USER REFLECT -->
+        <section id="critical" class="log-section">
+            <h2 style="font-family: var(--font-display); color: var(--neon-yellow); margin-bottom: 1rem;">ALGORITHMIC_LITERARY_REFLECTION</h2>
+            <div class="terminal-block">
+                > INTEGRATING DOSSIER: HAIYANG XI<br>
+                > LENS: CONTROL_THEORY + ENGINEERING_ALGORITHMS<br>
+                > ANALYZING "THE FUN THEY HAD" AS A SYSTEM FAILURE
+            </div>
+
+            <div class="analysis-text" style="font-size: 0.95rem; background: rgba(0, 210, 255, 0.05); padding: 25px; border: 1px solid var(--neon-blue); margin-bottom: 2rem;">
+                <p>As a student deeply involved in <b>Mathematics and Control Theory</b>, I view Margie’s mechanical teacher as a "Perfect System" that fails precisely because of its perfection. In engineering, a system is defined by its structure, constraints, and feedback loops. In Asimov’s story, the education system is a <b>Closed-Loop Feedback System</b>: it monitors Margie’s performance and adjusts the difficulty to match her "level." However, this system neglects the most critical variable in human development: <b>Social Stochasticity</b>—the unpredictable, non-linear growth that occurs through human-to-human interaction.</p>
+            </div>
+
+            <div class="knowledge-grid">
+                <div class="data-card">
+                    <div class="status-tag">ANALYSIS_01</div>
+                    <h4>REDUCTIONIST ALGORITHMS</h4>
+                    <p style="font-size: 0.8rem; color: var(--text-dim);">The mechanical teacher reduces education to "Punch Codes" and data entry. From an algorithmic perspective, it ignores the <i>complexity of the learning process</i>, treating knowledge acquisition as a simple linear function rather than a multi-agent collaborative search for truth.</p>
+                </div>
+
+                <div class="data-card" style="border-color: var(--neon-green);">
+                    <div class="status-tag">ANALYSIS_02</div>
+                    <h4>DYNAMICAL SYSTEM STABILITY</h4>
+                    <p style="font-size: 0.8rem; color: var(--text-dim);">Control theory teaches us about stability. Margie’s teacher is "stable" but stagnant. By removing the "human error" variable, the system eliminates the <i>innovative instability</i> that allows children to wonder, play, and deviate from a set path.</p>
+                </div>
+
+                <div class="data-card" style="border-color: var(--neon-pink);">
+                    <div class="status-tag">ANALYSIS_03</div>
+                    <h4>STRUCTURAL ANCHORS</h4>
+                    <p style="font-size: 0.8rem; color: var(--text-dim);">Just as I build mathematical frameworks before adding details, Margie uses the "Old Book" as a <b>Structural Anchor</b>. It provides a historical framework that makes her current digital reality seem hollow, proving that human progress requires analog roots.</p>
+                </div>
+
+                <div class="data-card" style="border-color: var(--neon-yellow);">
+                    <div class="status-tag">ANALYSIS_04</div>
+                    <h4>FEEDBACK LIMITATIONS</h4>
+                    <p style="font-size: 0.8rem; color: var(--text-dim);">The mechanical teacher provides <i>immediate feedback</i>, which is efficient for memorization but detrimental to deep understanding. True learning, much like engineering verification, requires the "delayed feedback" of discussion and shared social joy.</p>
+                </div>
+            </div>
+
+            <div class="accent-box">
+                <h4 style="color: var(--neon-pink); margin-bottom: 10px;">PHILOSOPHICAL SYNTHESIS</h4>
+                <p style="font-size: 0.95rem; color: var(--text-primary); line-height: 1.6; font-style: italic;">
+                    "My target is to be a cross-disciplinary leader who builds stable, explainable solutions. Asimov’s story reminds me that even the most advanced engineering algorithms must remain 'Human-Centric.' An education system without 'The Fun They Had' is mathematically efficient but systematically broken."
+                </p>
+            </div>
+
+            <div class="terminal-block" style="font-size: 0.7rem; color: var(--text-dim);">
+                // SYSTEM LOG: HAIYANG XI REFLECTION COMPLETE.<br>
+                // CONCLUSION: Human variability is a feature, not a bug.
+            </div>
+        </section>
+
+        <!-- 07. MEDIA STREAM -->
+        <section id="visual" class="log-section">
+            <h2 style="font-family: var(--font-display); color: var(--neon-blue); margin-bottom: 1rem;">MEDIA_STREAM: VISUAL_ARCHIVE</h2>
+            <div class="terminal-block">
+                > ESTABLISHING CONNECTION TO HISTORICAL_RECORDS...<br>
+                > DECRYPTING VIDEO_STREAM [SOURCE: YOUTUBE_NODE]<br>
+                > STATUS: STREAMING_ACTIVE
+            </div>
+
+            <div style="position: relative; width: 100%; max-width: 900px; margin: 0 auto;">
+                <div style="position: absolute; top: -10px; left: -10px; width: 30px; height: 30px; border-top: 2px solid var(--neon-blue); border-left: 2px solid var(--neon-blue);"></div>
+                <div style="position: absolute; bottom: -10px; right: -10px; width: 30px; height: 30px; border-bottom: 2px solid var(--neon-pink); border-right: 2px solid var(--neon-pink);"></div>
+                
+                <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border: 1px solid rgba(0, 210, 255, 0.3); background: #000;">
+                    <iframe 
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
+                        src="https://www.youtube.com/embed/GKdMdHf_s5A" 
+                        title="The Fun They Had - Isaac Asimov" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                
+                <div style="margin-top: 15px; font-family: var(--font-mono); font-size: 0.7rem; color: var(--neon-green); text-align: right;">
+                    SIGNAL_STRENGTH: 98% | SYNC: STABLE
+                </div>
+            </div>
+
+            <div class="accent-box" style="margin-top: 3rem;">
+                <h4 style="color: var(--neon-yellow); margin-bottom: 10px;">// VIDEO ANALYSIS NOTES</h4>
+                <p style="font-size: 0.9rem; color: var(--text-dim);">
+                    This video archive serves as visual verification of the "Standardized Isolation" protocol. Observe the cold UI of the Mechanical Teacher—a system that optimizes for grades but ignores the emotional state of the user. For an engineer, this represents a system with inadequate sensor data (ignoring human emotion).
+                </p>
+            </div>
+        </section>
+    </main>
+</div>
+
+<!-- DATA MODAL -->
+<div id="system-modal" onclick="closeModal()">
+    <div class="modal-content" onclick="event.stopPropagation()">
+        <div style="position: absolute; top: 20px; right: 20px; color: var(--neon-pink); cursor: pointer;" onclick="closeModal()">[TERMINATE_SESSION]</div>
+        <h3 id="modal-title" style="font-family: var(--font-display); color: var(--neon-yellow); margin-bottom: 1.5rem;">EXPANDED_DATA_LOG</h3>
+        <p id="modal-body" class="analysis-text" style="font-size: 0.95rem;"></p>
+        <div class="terminal-block" style="font-size: 0.65rem; margin-top: 2rem; border-color: var(--neon-pink);">
+            STATUS: Information retrieved from secure archive. NO_GAPS_DETECTED.
+        </div>
     </div>
-  </header>
+</div>
 
-  <main class="container section-padding">
-    <div class="space-y">
+<script>
+    function switchLog(logId, btn) {
+        document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
 
-      <!-- 1. SUMMARY -->
-      <section id="summary">
-        <div class="section-header">
-          <div class="icon-box">📜</div>
-          <h2 style="background: linear-gradient(to right, #fff, #94a3b8); -webkit-background-clip: text; color: transparent;">Executive Summary</h2>
-        </div>
-        <div class="card">
-          <span class="highlight-label">Literary Overview</span>
-          <p>Ray Bradbury’s <em>All Summer in a Day</em> stands as a definitive exploration of how environmental sensory deprivation can fundamentally erode human empathy and compassion. Set on a planet Venus defined by seven-year cycles of relentless gray rain, the story introduces Margot, a child whose Earthly memories of sunlight turn her into a target of profound group malice. As the miracle of the sun's brief appearance approaches, her peers succumb to a primal mob mentality, driven by an existential envy they cannot articulate. By ritualistically locking Margot in a dark closet, the class commits a symbolic murder of the truth she represents, physically and spiritually isolating her from the light. This digital thesis meticulously examines the psychological trauma of this exclusion and the permanent stain of collective guilt that marks the children as the gray rain inevitably returns.</p>
-        </div>
-      </section>
+        const sections = document.querySelectorAll('.log-section');
+        const target = document.getElementById(logId);
 
-      <!-- 2. AUTHOR TIMELINE -->
-      <section id="biography">
-        <div class="section-header" style="border-color: var(--blue);">
-          <div class="icon-box" style="background: var(--blue);">🎓</div>
-          <h2 style="background: linear-gradient(to right, var(--blue), var(--indigo)); -webkit-background-clip: text; color: transparent;">Ray Bradbury Legacy</h2>
-        </div>
-        <div style="display: grid; grid-template-columns: 1fr 1.5fr; gap: 5rem; align-items: center;">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Ray_Bradbury_%281975%29.jpg/800px-Ray_Bradbury_%281975%29.jpg" class="img-academic" alt="Portrait of Ray Bradbury">
-          <div id="timeline-list" style="display: flex; flex-direction: column; gap: 2.5rem;">
-            <!-- JS Renders Timeline Items -->
-          </div>
-        </div>
-      </section>
+        sections.forEach(s => {
+            if(s.classList.contains('active')) {
+                s.style.opacity = '0';
+                s.style.transform = 'translateY(-20px)';
+                setTimeout(() => { 
+                    s.classList.remove('active'); 
+                    s.style.visibility = 'hidden';
+                }, 300);
+            }
+        });
 
-      <!-- 3. NARRATIVE TENSION ARC -->
-      <section id="plot">
-        <div class="section-header" style="border-color: var(--indigo);">
-          <div class="icon-box" style="background: var(--indigo);">📈</div>
-          <h2 style="background: linear-gradient(to right, var(--indigo), var(--cyan)); -webkit-background-clip: text; color: transparent;">Narrative Tension Arc</h2>
-        </div>
-        <div class="plot-container">
-          <div class="chart-wrapper">
-            <svg class="chart-svg" viewBox="0 0 1000 400">
-              <line x1="50" y1="350" x2="950" y2="350" stroke="rgba(255,255,255,0.1)" stroke-width="2" />
-              <path class="chart-line" d="M 80 320 L 280 200 L 500 50 L 720 250 L 920 320" />
-              <!-- Axis Labels -->
-              <text x="80" y="380" class="chart-text" text-anchor="middle">Exposition</text>
-              <text x="280" y="380" class="chart-text" text-anchor="middle">Rising Action</text>
-              <text x="500" y="380" class="chart-text" text-anchor="middle">Climax</text>
-              <text x="720" y="380" class="chart-text" text-anchor="middle">Falling Action</text>
-              <text x="920" y="380" class="chart-text" text-anchor="middle">Resolution</text>
-              <!-- Interactive Points -->
-              <circle class="chart-point" cx="80" cy="320" r="8" onclick="updatePlot(0)" />
-              <circle class="chart-point" cx="280" cy="200" r="8" onclick="updatePlot(1)" />
-              <circle class="chart-point" cx="500" cy="50" r="8" onclick="updatePlot(2)" />
-              <circle class="chart-point" cx="720" cy="250" r="8" onclick="updatePlot(3)" />
-              <circle class="chart-point" cx="920" cy="320" r="8" onclick="updatePlot(4)" />
-            </svg>
-          </div>
-          <div id="plot-display-card">
-            <span id="p-label" class="highlight-label">Current Stage</span>
-            <h3 id="p-title">Select a Node to Analyze</h3>
-            <p id="p-desc">Interact with the tension graph above to witness the detailed narrative progression and psychological breakdown of the story.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- 4. CHARACTERISTICS ANALYSIS -->
-      <section id="characteristics">
-        <div class="section-header" style="border-color: var(--amber);">
-          <div class="icon-box" style="background: var(--amber);">👤</div>
-          <h2 style="background: linear-gradient(to right, var(--amber), var(--orange)); -webkit-background-clip: text; color: transparent;">Character Characteristics</h2>
-        </div>
-        <div class="grid grid-2" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem;">
-          <div class="card">
-            <span class="highlight-label">The Victim</span>
-            <h3>Margot: The Frail Prophet</h3>
-            <p>Margot is characterized by her profound spiritual isolation and her physical embodiment of sensory starvation on a dead planet. Described as a "ghost" and "a photograph dusted from an old album," her primary characteristic is an uncompromising spirit that refuses to trade Earthly truth for Venusian amnesia. Her fragility is a sign of her spiritual superiority; she is the "Tall Poppy" whose only crime is her memory of beauty. This characteristic isolation renders her vulnerable to a mob that fears her silence as much as her memories. Ultimately, Margot represents the tragedy of being a witness to light in a world that has institutionalized its own darkness.</p>
-          </div>
-          <div class="card" style="border-left-color: var(--indigo);">
-            <span class="highlight-label">The Mob</span>
-            <h3>William & The Class</h3>
-            <p>William serves as the predatory catalyst for the class, representing the dark side of unled, bored, and amnesiac youth. The class as a whole exhibits the psychological state of deindividuation, acting as a single organism driven by existential envy rather than individual malice. Their defining characteristic is a collective cruelty that arises when they encounter a truth they can no longer possess. By locking Margot in the closet, the group finds a sense of immunity and shared responsibility for their malicious act. Lacking individual names and consciences, they represent the tragedy of a society that chooses to blind its prophets to maintain its comfortable amnesia. Their final silence is the characteristic realization of their irreversible loss of innocence.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- 5. SYMBOLISM & CONFLICT -->
-      <section id="analysis">
-        <div class="section-header" style="border-color: var(--rose);">
-          <div class="icon-box" style="background: var(--rose);">✨</div>
-          <h2 style="background: linear-gradient(to right, var(--rose), var(--orange)); -webkit-background-clip: text; color: transparent;">Thematic Architecture</h2>
-        </div>
-        <div class="grid grid-2" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem;">
-          <div class="card">
-            <span class="highlight-label">Symbolism</span>
-            <h3>The Sun & The Closet</h3>
-            <p>The <b>Sun</b> is the ultimate symbol of divinity, spiritual awakening, and the objective truth of a higher reality that the Venusian children have forgotten. Bradbury describes it as a "flower that blooms for just one hour," emphasizing the fleeting nature of miracles in a dark world. Conversely, the <b>Closet</b> represents the dark corners of the human heart where we bury the truths we are too insecure to face. It is a womb of darkness that symbolizes the physical and psychological suppression of the "Other" by the majority. Locking the door is the mob's attempt to "murder" the witness of light, while opening it signifies the birth of collective guilt. Together, they represent the constant war between enlightenment and repression.</p>
-          </div>
-          <div class="card">
-            <span class="highlight-text">Conflict Analysis</span>
-            <h3>Individual vs. The Hive Mind</h3>
-            <p>The primary conflict is the violent exclusion of Margot’s individual memory by the class's collective amnesia. Margot’s very existence acts as a painful reminder of a world the other children have lost, triggering an unbearable internal tension. To resolve this amnesia-threat, the group performs a sociological ritual of exclusion by physically and mentally isolating the outsider. This conflict demonstrates how societies often seek to "equalize" through the destruction of the gifted or the different. The silence that follows the act proves that the group has achieved a temporary unity through a shared, irreversible crime. In the end, the physical conflict transitions into a permanent psychological burden of guilt that rain cannot wash away.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- 6. PERSONAL CONNECTION -->
-      <section id="reflection">
-        <div class="section-header" style="border-color: #fff;">
-          <div class="icon-box" style="background: #fff; color: var(--bg);">💬</div>
-          <h2 style="color: #fff;">Personal Connection: The Real "Closet"</h2>
-        </div>
-        <div class="reflection-box">
-          <blockquote>
-            <b>This story resonated deeply with my personal experience, particularly the theme of collective bullying and the trauma of exclusion.</b> In my previous high school, there was a female classmate who was always the target of rumors—a malicious claim that she got pregnant at fourteen turned her into a spectacle. Like Margot, she was peered at and mocked during breaks by classmates who valued drama over her humanity, eventually forcing her to transfer schools. <br><br>
-            Furthermore, this parallels my own experience as an international student in Canada, where I arrived with full trust only to encounter a hostile environment. When I moved into a host family, the initial friendliness turned into a nightmare once I announced my transfer; I was yelled at and abused in a language I was still learning. Being a minor without other friends, <b>I felt exactly like Margot locked in that closet</b>—isolated, vulnerable, and enduring a hostile atmosphere while everyone else moved on. <b>Like Margot, I noticed the "anomalies" in their attitude but chose to ignore them to avoid tension,</b> hoping for a "sunlight" (a smooth move) that was being sabotaged. These experiences remind me that people must always be responsible for their own behavior and the impact on others, especially when they are at their most vulnerable.
-          </blockquote>
-        </div>
-      </section>
-
-      <!-- 7. VIDEO DEFENSE -->
-      <section id="media">
-        <div class="section-header" style="border-color: var(--blue);">
-          <div class="icon-box" style="background: var(--blue);">▶</div>
-          <h2 style="color: #fff;">Digital Defense: Oral Defense</h2>
-        </div>
-        <div class="video-frame" id="v-frame" onclick="startVideo()">
-          <div class="video-overlay" id="v-overlay">
-            <div class="play-circle">▶</div>
-            <h3 style="color:white; letter-spacing: 0.15em; font-weight: 900; text-transform: uppercase; margin-top: 2rem;">Launch Multimodal Presentation</h3>
-            <p style="color:rgba(255,255,255,0.6); font-family: ui-monospace, monospace;">GUO_CEN_THESIS_FINAL.MP4</p>
-          </div>
-          <div id="video-embed" style="width: 100%; height: 100%;"></div>
-        </div>
-      </section>
-
-    </div>
-  </main>
-
-  <footer style="padding: 10rem 0 6rem; border-top: 1px solid var(--card-border); text-align: center;">
-    <h2 style="font-weight: 900; font-size: 3.5rem; margin: 0; letter-spacing: -0.05em;">Guo Cen<span>.</span></h2>
-    <div style="color: var(--muted); font-weight: 800; letter-spacing: 0.5em; text-transform: uppercase; margin-top: 1.5rem; font-size: 0.9rem;">Digital Thesis Portfolio — ENG4U Culminating Project</div>
-  </footer>
-
-  <script>
-    const DATA = {
-      timeline: [
-        { year: "1920", event: "Birth of a Visionary", detail: "Ray Bradbury was born in Waukegan, IL. His self-taught education in libraries fostered a rhythmic, poetic prose that would later define his psychological science fiction. He focused on the human heart rather than just machines, creating stories that explore the existential dread lurking beneath everyday life. His early love for magic and silent films shaped his cinematic storytelling style." },
-        { year: "1954", event: "Venusian Publication", detail: "Published 'All Summer in a Day' during the peak of the Cold War and the early Space Race. The story served as a powerful metaphor for the pervasive fear of the 'unthinking mob' and the sacrifice of individuality for social cohesion. It was a period when individuality was often crushed by the pressure to conform to national security or social norms. Bradbury used Venus to critique these Earthly behaviors from a safe distance." },
-        { year: "Legacy", event: "The Poet of Sci-Fi", detail: "Bradbury died as a titan who successfully bridged the gap between pulp science fiction and high-level academia. His work is still used to teach sensory imagery and character depth, emphasizing that sci-fi is a mirror to prevent dark futures, not just predict them. He famously noted that his stories were intended to prevent the world he wrote about from becoming a reality. His influence resonates in every digital and multimodal analysis of literature today." }
-      ],
-      plotArc: [
-        { label: "Exposition", title: "The Gray Sensory Prison", desc: "The story establishes planet Venus as a world defined by a relentless, suffocating seven-year cycle of rain. The children live in underground tunnels, having spent their entire conscious lives in a state of psychological amnesia regarding the sun. Margot, an outsider from Earth who arrived five years ago, is the only one who remembers the light's warmth and color. This shared sensory deprivation creates an atmosphere of deep-seated irritability and spiritual starvation within the class. The opening scene effectively sets the stage for the friction between those who possess truth and those who live in shadows." },
-        { label: "Rising Action", title: "The Rising Tide of Jealousy", desc: "Tensions escalate as the scientists' predicted hour of sunlight approaches. Margot's isolation intensifies; she is mocked for her sun-themed poem and her refusal to participate in the class's gray existence. William, acting as the agent of group amnesia, weaponizes the class's shared existential envy. Moments before the rain stops, the children succumb to a predatory mob mentality and physically force Margot into a dark, soundproof closet. They lock her away from the miracle she lives for, demonstrating a ritualistic act of group aggression intended to silence her Earthly witness." },
-        { label: "Climax", title: "The Golden Hour of Enlightenment", desc: "The rain stops abruptly, replaced by an immense and unbelievable silence. The sun emerges in flaming bronze, turning the sky into a blazing blue tile for one glorious hour. The children experience a sensory overload of nature—warmth, color, and sheer ecstatic joy—as they run through the jungle. In their collective state of trance-like happiness, they completely forget about the girl they have entombed in the darkness underground. This state of bliss is tragically built upon the suffering and exclusion of the one individual who actually remembered its value." },
-        { label: "Falling Action", title: "Return of the Gray Stasis", desc: "A single, cold drop of rain falls into a child's hand, signaling the end of the respite. The sky turns black, and the thunder returns with a violent, terrifying roar that shakes their newfound world. As the children trudge back toward the underground tunnels, their fleeting joy is replaced by a heavy, suffocating realization of their actions. The adrenaline of the mob vanishes, leaving them to face the weight of the crime they collectively committed in the shadows. The transition from golden joy back to gray rain highlights the extreme fragility of their stolen happiness." },
-        { label: "Resolution", title: "The Epiphany of Guilt", desc: "A child remembers Margot, and the class walks slowly and silently back to the closet door. The door is unlocked in a state of devastating stillness, marking their permanent transition from amnesia to permanent guilt. Margot's silence as she emerges is more powerful than any scream, acting as a permanent stain on the group's conscience. This ending suggests that some acts of cruelty are irreversible and that the memory of the sun is now forever tied to the memory of their sin. The children are no longer innocent; they are now participants in the darkness they once only knew as weather." }
-      ]
-    };
-
-    function init() {
-      // Rain Effect
-      const r = document.getElementById('rain-box');
-      for(let i=0; i<130; i++) {
-        const d = document.createElement('div');
-        d.className = 'drop';
-        d.style.left = Math.random() * 100 + 'vw';
-        d.style.height = (120 + Math.random() * 80) + 'px';
-        d.style.animationDuration = (0.3 + Math.random() * 0.7) + 's';
-        d.style.animationDelay = Math.random() * 5 + 's';
-        r.appendChild(d);
-      }
-
-      // Timeline Render
-      const tl = document.getElementById('timeline-list');
-      DATA.timeline.forEach(item => {
-        tl.innerHTML += `
-          <div style="border-left: 5px solid var(--rose); padding-left: 2.5rem; transition: 0.3s;">
-            <div style="font-weight: 900; color: var(--rose); font-size: 1.3rem; letter-spacing: 0.1em;">${item.year}</div>
-            <h3 style="margin: 0.5rem 0; font-size: 1.8rem; letter-spacing: -0.02em;">${item.event}</h3>
-            <p style="color:var(--muted); font-size: 1.1rem; line-height: 1.8;">${item.detail}</p>
-          </div>
-        `;
-      });
+        setTimeout(() => {
+            target.style.visibility = 'visible';
+            target.classList.add('active');
+            target.scrollTop = 0;
+            target.style.opacity = '1';
+            target.style.transform = 'translateY(0)';
+        }, 350);
     }
 
-    function updatePlot(idx) {
-      const step = DATA.plotArc[idx];
-      const card = document.getElementById('plot-display-card');
-      card.style.opacity = '0';
-      card.style.transform = 'translateX(-20px)';
-      
-      setTimeout(() => {
-        document.getElementById('p-label').innerText = step.label;
-        document.getElementById('p-title').innerText = step.title;
-        document.getElementById('p-desc').innerText = step.desc;
-        card.style.opacity = '1';
-        card.style.transform = 'translateX(0)';
-      }, 300);
+    function openModal(text) {
+        document.getElementById('modal-body').innerText = text;
+        document.getElementById('system-modal').style.display = 'flex';
     }
 
-    function startVideo() {
-      const overlay = document.getElementById('v-overlay');
-      overlay.style.opacity = '0';
-      setTimeout(() => {
-        overlay.style.display = 'none';
-        document.getElementById('video-embed').innerHTML = `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/0UwkTzUclOg?autoplay=1&rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="border:none;"></iframe>`;
-      }, 600);
+    function closeModal() {
+        document.getElementById('system-modal').style.display = 'none';
     }
 
-    window.onload = init;
-  </script>
+    window.addEventListener('DOMContentLoaded', () => {
+        console.log("%c [SYSTEM]: LOG_ENGINE_INITIALIZED_ENGLISH_LOCALE ", "color: #fff01f; font-weight: bold; font-family: monospace;");
+    });
+</script>
+
 </body>
 </html>
