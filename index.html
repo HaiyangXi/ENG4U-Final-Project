@@ -110,7 +110,6 @@ body{
 
 .main { flex:1; display:flex; justify-content: center; width: 100%; }
 .content { flex: 1; max-width: 1800px; width: 96%; padding: 40px 10px 80px 10px; }
-footer { background:#fff; color:var(--text-light); text-align:center; padding:25px 0; margin-top:auto; font-size: 14px; border-top: 1px solid #e2e8f0; }
 
 /* ======================================================
    🔥 左侧隐藏导航栏 (Sidebar)
@@ -152,7 +151,7 @@ body.is-admin .media-card:hover .media-del-btn, body.is-admin .news-card-ui:hove
 body.is-admin .md-textarea { display: block !important; }
 
 /* ======================================================
-   全屏照片墙
+   全屏照片墙 (最上方引入屏)
 ====================================================== */
 .home-hero-banner {
   width: 100vw; height: calc(100vh - 70px); margin-left: calc(-50vw + 50%); margin-top: -40px; margin-bottom: 60px;
@@ -194,6 +193,25 @@ body.is-admin .md-textarea { display: block !important; }
 
 .hero-bubble h2 { font-size: 56px; font-weight: 800; margin-bottom: 20px; letter-spacing: -1.5px; position: relative; z-index: 2; text-shadow: 0 4px 10px rgba(0,0,0,0.1);}
 .hero-bubble p { font-size: 24px; font-weight: 400; opacity: 0.95; max-width: 1000px; margin: 0 auto; line-height: 1.8; position: relative; z-index: 2;}
+
+/* 🔥 新增：首页最新动态模块 (Home Latest News) */
+.home-latest-news {
+  display: flex; align-items: center; gap: 25px;
+  background: var(--surface); padding: 25px 40px; border-radius: 24px;
+  box-shadow: var(--shadow-sm); cursor: pointer; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border-left: 6px solid var(--brand-cyan);
+}
+.home-latest-news:hover {
+  transform: translateY(-5px); box-shadow: var(--shadow); border-left-color: var(--brand-dark);
+}
+.hln-icon { font-size: 38px; }
+.hln-content { flex: 1; }
+.hln-meta { font-size: 14px; color: var(--brand-cyan); font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; display: flex; align-items: center; gap: 10px;}
+.hln-meta-date { color: var(--text-light); font-weight: 600; font-size: 13px;}
+.hln-title { font-size: 22px; color: var(--brand-dark); font-weight: 700; margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
+.hln-arrow { font-size: 28px; color: #cbd5e1; transition: 0.3s; font-weight: 300;}
+.home-latest-news:hover .hln-arrow { color: var(--brand-cyan); transform: translateX(8px); }
+
 
 /* 社交与介绍白卡 */
 .social-section { display: flex; align-items: stretch; gap: 60px; padding: 55px; background: var(--surface); border-radius: 30px; box-shadow: var(--shadow); width: 100%; transition: transform 0.4s ease; }
@@ -389,7 +407,7 @@ body:not(.is-admin) .md-editor-container { grid-template-columns: 1fr; }
 .footer-col ul li { margin-bottom: 14px; }
 .footer-col ul li a { color: #94a3b8; text-decoration: none; transition: all 0.3s ease; font-size: 15px; cursor: pointer; }
 .footer-col ul li a:hover { color: var(--brand-cyan); padding-left: 8px; }
-.footer-brand-logo { height: 200px; margin-bottom: 20px; object-fit: contain; }
+.footer-brand-logo { height: 50px; margin-bottom: 20px; object-fit: contain; }
 .footer-desc { font-size: 15px; line-height: 1.8; margin-bottom: 25px; max-width: 90%; }
 .footer-contact { font-size: 15px; line-height: 1.8; }
 .footer-contact strong { color: #fff; margin-right: 5px; }
@@ -472,6 +490,8 @@ body:not(.is-admin) .md-editor-container { grid-template-columns: 1fr; }
 
     <!-- ================= 首页 ================= -->
     <div id="home" class="section active">
+      
+      <!-- 全屏视差滚动图片墙 -->
       <div class="home-hero-banner">
         <div class="hero-banner-text">
           <h1>OpologyLab</h1>
@@ -481,12 +501,25 @@ body:not(.is-admin) .md-editor-container { grid-template-columns: 1fr; }
       </div>
 
       <div class="home-wrapper" id="home-content-start">
+        
+        <!-- 巨型蓝框 + OOpology Logo -->
         <div class="hero-bubble">
           <img src="OOpologylogo.png" alt="Opology Logo" class="hero-logo" onerror="this.style.display='none'">
           <h2>Welcome to OpologyLab</h2>
           <p>This platform brings together my research in mathematics, physics, mechatronics, and control systems. Here, you can explore my projects, lecture notes, and research records.</p>
         </div>
 
+        <!-- 🔥 新增：首页最新动态模块 (Home Latest News) -->
+        <div class="home-latest-news" id="home-latest-news" style="display: none;" onclick="goToLatestNews()">
+          <div class="hln-icon">📰</div>
+          <div class="hln-content">
+            <div class="hln-meta">Latest Update <span id="hln-date"></span></div>
+            <h3 id="hln-title">Loading...</h3>
+          </div>
+          <div class="hln-arrow">➔</div>
+        </div>
+
+        <!-- 白色社交介绍区 -->
         <div class="social-section">
           <div class="social-left">
             <h3>🌐 My Platforms</h3>
@@ -508,6 +541,7 @@ body:not(.is-admin) .md-editor-container { grid-template-columns: 1fr; }
           </div>
         </div>
 
+        <!-- 加长版：沉浸式知识流动地图 -->
         <div class="learning-path-map">
           <h2 class="map-title">🧭 Academic Knowledge Flow</h2>
           <div class="path-timeline">
@@ -520,6 +554,7 @@ body:not(.is-admin) .md-editor-container { grid-template-columns: 1fr; }
           <div class="map-footer"><h2>Let's go! <span>Explore</span> your academic path.</h2></div>
         </div>
 
+        <!-- 六大模块直达网格 -->
         <div class="home-grid">
           <div class="home-hub-card" onclick="navigate('math')"><div class="icon">📐</div><h3>Mathematics</h3><p>微积分、线性代数、复变函数及数学核心课程。</p></div>
           <div class="home-hub-card" onclick="navigate('mech')"><div class="icon">⚙️</div><h3>Mechatronics</h3><p>嵌入式架构、传感器信号处理与硬件控制系统。</p></div>
@@ -564,7 +599,6 @@ body:not(.is-admin) .md-editor-container { grid-template-columns: 1fr; }
           <h1>Welcome to OpologyLab</h1>
           <p>这是一座建立在数字空间的学术灯塔。我们致力于用严谨的数学逻辑解析物理世界，用创新的机电与控制算法改造工程实践。从底层的理论推导，到上层的系统协同，这里记录着每一次思考与进步。</p>
         </div>
-        <!-- You can expand this section as needed -->
       </div>
     </div>
 
@@ -589,9 +623,7 @@ body:not(.is-admin) .md-editor-container { grid-template-columns: 1fr; }
         🕒 发布时间: <span id="news-detail-date"></span>
       </div>
       <div class="md-editor-container">
-        <!-- 编辑器 -->
         <textarea class="md-textarea" id="news-md-input" placeholder="✍️ 撰写新闻详情 (支持 Markdown & LaTeX)..."></textarea>
-        <!-- 渲染区 -->
         <div class="md-preview" id="news-md-output"></div>
       </div>
     </div>
@@ -847,7 +879,9 @@ const API_SAVE = "http://127.0.0.1:9000/save";
 let isAdmin = false;
 let currentSection = 'home';
 let activeSubCardData = null; 
-let activeNewsCardData = null; // 用于新闻页面的数据绑定
+let activeNewsCardData = null; 
+let latestNewsRef = null; // 缓存首页展示的最新一条新闻节点
+
 let saveTimer = null;
 let mdRenderTimer = null;
 let newsMdRenderTimer = null;
@@ -1030,7 +1064,7 @@ function createSubCard(name, id, dataStr) {
 }
 
 /* =====================================================
-   🔥 新闻中心 (News) 逻辑
+   🔥 新闻中心 (News) 逻辑 & 首页动态速递
 ===================================================== */
 function createNewsCard(title, id, date, mdContent) {
   const card = document.createElement('div');
@@ -1082,6 +1116,29 @@ function autoSaveNewsContent() {
   requestSave();
 }
 
+// 🌟 同步最新一条新闻到首页的逻辑
+function syncHomeLatestNews() {
+  const newsList = document.getElementById('grid-news-list');
+  const latestCard = newsList.querySelector('.news-card-ui');
+  const homeNewsModule = document.getElementById('home-latest-news');
+
+  if (latestCard) {
+    latestNewsRef = latestCard;
+    document.getElementById('hln-date').textContent = "• " + latestCard.dataset.date;
+    document.getElementById('hln-title').textContent = latestCard.querySelector('h3').textContent;
+    homeNewsModule.style.display = 'flex';
+  } else {
+    latestNewsRef = null;
+    homeNewsModule.style.display = 'none';
+  }
+}
+
+function goToLatestNews() {
+  if(latestNewsRef) {
+    navigate('news-list-page'); // 确保导航状态正确
+    enterNewsPage(latestNewsRef);
+  }
+}
 
 /* =====================================================
    Left Click Operations 
@@ -1110,13 +1167,14 @@ function confirmAdd() {
     addState.targetDom.classList.add('expanded');
   } else if (addState.mode === 'news') {
     const grid = document.getElementById('grid-news-list');
-    grid.insertBefore(createNewsCard(val), grid.firstChild); // 插入到最前面
+    grid.insertBefore(createNewsCard(val), grid.firstChild); 
+    syncHomeLatestNews(); // 更新首页速递
   }
   closeModal('modal-add'); requestSave();
 }
 
 function confirmDelete() {
-  if (deleteTarget) { deleteTarget.remove(); requestSave(); }
+  if (deleteTarget) { deleteTarget.remove(); syncHomeLatestNews(); requestSave(); }
   closeModal('modal-delete');
 }
 
@@ -1145,9 +1203,7 @@ document.addEventListener('click', e => {
   const btnDelMedia = e.target.closest('.media-del-btn');
   if (btnDelMedia) { 
     e.stopPropagation(); 
-    // 如果是在新闻卡片上的删除
     if(btnDelMedia.closest('.news-card-ui')) { deleteTarget = btnDelMedia.closest('.news-card-ui'); document.getElementById('modal-delete').classList.add('active'); return;}
-    // 否则是正常媒体删除
     removeMedia(btnDelMedia.dataset.index, btnDelMedia.dataset.type); 
   }
 });
@@ -1197,6 +1253,7 @@ function confirmRename() {
   } else if (renameState.type === 'news') {
     renameState.targetDom.querySelector('h3').textContent = newName;
     if(activeNewsCardData === renameState.targetDom) document.getElementById('news-detail-title').textContent = newName;
+    syncHomeLatestNews(); // 同步重命名到首页
   }
 
   closeModal('modal-rename'); requestSave(); 
@@ -1375,6 +1432,9 @@ function rebuildCourses(data) {
     const newsGrid = document.getElementById('grid-news-list'); newsGrid.innerHTML = '';
     data['news_sys'].forEach(nData => { newsGrid.appendChild(createNewsCard(nData.title, nData.id, nData.date, nData.md)); });
   }
+  
+  // 核心：每次重建数据后，同步更新首页速递
+  syncHomeLatestNews();
 }
 
 async function saveToServer() {
