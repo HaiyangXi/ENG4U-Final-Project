@@ -524,9 +524,9 @@ body:not(.is-admin) .md-editor-container { grid-template-columns: 1fr; }
           <div class="social-left">
             <h3>🌐 My Platforms</h3>
             <a href="https://space.bilibili.com/388315729" target="_blank" title="Bilibili">📺<span>Bilibili</span></a>
-            <a href="https://www.youtube.com/@OshawnXi" target="_blank" title="YouTube">▶️<span>YouTube</span></a>
-            <a href="https://github.com/Oshawn369" target="_blank" title="Github">💻<span>Github</span></a>
-            <a href="https://www.instagram.com/haiyang_xi" target="_blank" title="Instagram">📸<span>Instagram</span></a>
+            <a href="https://youtube.com/@opology369?si=SrAouvF5ExPzayqD" target="_blank" title="YouTube">▶️<span>YouTube</span></a>
+            <a href="https://github.com/dashboard" target="_blank" title="Github">💻<span>Github</span></a>
+            <a href="https://www.instagram.com/opology_lab" target="_blank" title="Instagram">📸<span>Instagram</span></a>
             <a href="https://x.com/xihaiyang3" target="_blank" title="X (Twitter)">🐦<span>X</span></a>
           </div>
           <div class="social-intro">
@@ -545,11 +545,11 @@ body:not(.is-admin) .md-editor-container { grid-template-columns: 1fr; }
         <div class="learning-path-map">
           <h2 class="map-title">🧭 Academic Knowledge Flow</h2>
           <div class="path-timeline">
-            <div class="path-node"><div class="path-card"><h4>📐 Mathematics Theory</h4><p>微积分、线性代数与复变函数，构建坚实的逻辑底层，为复杂系统建模提供纯粹的数学支撑。</p></div></div>
-            <div class="path-node"><div class="path-card"><h4>⚛️ Physics Dynamics</h4><p>经典力学与空间动力学，从理论数学向现实世界过渡，定义真实物理状态的演化规律。</p></div></div>
-            <div class="path-node"><div class="path-card"><h4>⚙️ Mechatronics Control</h4><p>传感器数据采集、执行器响应与嵌入式架构，物理世界与数字控制交汇的核心神经中枢。</p></div></div>
-            <div class="path-node"><div class="path-card"><h4>📡 Signal Processing</h4><p>状态空间分析、经典频域反馈与自适应算法滤波，在噪声与干扰中精准提取有效信息。</p></div></div>
-            <div class="path-node"><div class="path-card"><h4>💻 Research Projects</h4><p>从理论到工程：无人车底盘解算、多智能体协同仿真、前沿控制算法在现实场景中的综合落地与验证。</p></div></div>
+            <div class="path-node"><div class="path-card"><h4>📐 Mathematics Theory</h4><p>Calculus,Linear Algebra~ pure maths courses lists</p></div></div>
+            <div class="path-node"><div class="path-card"><h4>⚛️ Physics Dynamics</h4><p>Classic physicis, electricity, etc</p></div></div>
+            <div class="path-node"><div class="path-card"><h4>⚙️ Mechatronics </h4><p>embedded systems etc coirsers </p></div></div>
+            <div class="path-node"><div class="path-card"><h4>📡 control system</h4><p>classic control, modern control, robust control systems</p></div></div>
+            <div class="path-node"><div class="path-card"><h4>💻 Research Projects</h4><p>Real world applications projects</p></div></div>
           </div>
           <div class="map-footer"><h2>Let's go! <span>Explore</span> your academic path.</h2></div>
         </div>
@@ -606,7 +606,7 @@ body:not(.is-admin) .md-editor-container { grid-template-columns: 1fr; }
     <div id="news-list-page" class="section">
       <div class="section-header" style="margin-bottom: 50px;">
         <h2>📰 Lab News & Updates <button class="title-add admin-only" onclick="createNewNews()">＋</button></h2>
-        <p class="section-desc">实验室最新研究动态、项目开源记录与学术更新日志。</p>
+        <p class="section-desc">Newest Lab information update</p>
       </div>
       <div class="news-grid" id="grid-news-list">
         <!-- 动态卡片插入区 -->
@@ -617,13 +617,13 @@ body:not(.is-admin) .md-editor-container { grid-template-columns: 1fr; }
     <div id="news-detail-page" class="section">
       <div class="page-header">
         <h1 id="news-detail-title">Loading News...</h1>
-        <button class="back-btn" onclick="navigate('news-list-page')">🔙 返回新闻列表</button>
+        <button class="back-btn" onclick="navigate('news-list-page')">🔙 Return news list</button>
       </div>
       <div class="subpage-desc-bar">
-        🕒 发布时间: <span id="news-detail-date"></span>
+        🕒 Upload Time: <span id="news-detail-date"></span>
       </div>
       <div class="md-editor-container">
-        <textarea class="md-textarea" id="news-md-input" placeholder="✍️ 撰写新闻详情 (支持 Markdown & LaTeX)..."></textarea>
+        <textarea class="md-textarea" id="news-md-input" placeholder="✍️ Writting news for Markdown & LaTeX..."></textarea>
         <div class="md-preview" id="news-md-output"></div>
       </div>
     </div>
@@ -632,23 +632,23 @@ body:not(.is-admin) .md-editor-container { grid-template-columns: 1fr; }
     <div id="page-container" class="section">
       <div class="page-header">
         <h1 id="page-title">Loading...</h1>
-        <button id="back-btn" class="back-btn">🔙 返回上级</button>
+        <button id="back-btn" class="back-btn">🔙 Return back</button>
       </div>
       <div class="subpage-desc-bar">
-        <div class="desc-content" id="page-desc" contenteditable="false">📝 这里是在线说明栏。管理员登录后可直接点击修改。</div>
-        <div class="desc-meta">🕒 更新于: <span id="page-date">刚刚</span></div>
+        <div class="desc-content" id="page-desc" contenteditable="false">📝 The informations for the coursers, adminer can edit</div>
+        <div class="desc-meta">🕒Update to <span id="page-date">Just</span></div>
       </div>
       <div class="md-editor-container">
-        <textarea class="md-textarea" id="md-input" placeholder="✍️ 输入 Markdown 文本或 LaTeX 公式 (例如 $$e^{i\pi} + 1 = 0$$)..."></textarea>
+        <textarea class="md-textarea" id="md-input" placeholder="✍️ Input Markdown or LaTeX  (example $$e^{i\pi} + 1 = 0$$)..."></textarea>
         <div class="md-preview" id="md-output"></div>
       </div>
       <div class="media-split-container">
         <div class="subpage-section">
-          <h3>📖 PDF Library <button class="subpage-add-btn admin-only" onclick="openAddMedia('pdf')">＋ 上传文献</button></h3>
+          <h3>📖 PDF Library <button class="subpage-add-btn admin-only" onclick="openAddMedia('pdf')">＋Upload PDF</button></h3>
           <div class="media-grid" id="pdf-grid"></div>
         </div>
         <div class="subpage-section">
-          <h3>🎬 Video Cinema <button class="subpage-add-btn admin-only" onclick="openAddMedia('video')">＋ 链接视频</button></h3>
+          <h3>🎬 Video Cinema <button class="subpage-add-btn admin-only" onclick="openAddMedia('video')">＋Videos link</button></h3>
           <div class="media-grid" id="video-grid"></div>
         </div>
       </div>
@@ -659,9 +659,9 @@ body:not(.is-admin) .md-editor-container { grid-template-columns: 1fr; }
       <div id="account-container">
         <aside class="account-sidebar">
           <ul>
-            <li class="active" onclick="switchAccountTab('profile', this)">👤 个人资料</li>
-            <li onclick="switchAccountTab('settings', this)">⚙️ 系统设置</li>
-            <li onclick="switchAccountTab('data', this)">💾 数据管理</li>
+            <li class="active" onclick="switchAccountTab('profile', this)">👤 Profile</li>
+            <li onclick="switchAccountTab('settings', this)">⚙️ Setting</li>
+            <li onclick="switchAccountTab('data', this)">💾 Data mangments</li>
           </ul>
         </aside>
         <main class="account-main">
@@ -727,10 +727,10 @@ body:not(.is-admin) .md-editor-container { grid-template-columns: 1fr; }
   <div class="footer-grid">
     <div class="footer-col">
       <img src="OOpologylogo.png" alt="OpologyLab Logo" class="footer-brand-logo" onerror="this.style.display='none'">
-      <p class="footer-desc">OpologyLab 致力于数学推导、机电硬件架构与自适应控制算法的深度科研与工程落地探索。</p>
+      <p class="footer-desc">OpologyLab For maths, comupter systems and control systems</p>
       <div class="footer-contact">
         <p>📍 <strong>Location:</strong> Toronto, Ontario, Canada</p>
-        <p>✉️ <strong>Email:</strong> oshawn@opologylab.com</p>
+        <p>✉️ <strong>Email:</strong>opology369@gmail.com</p>
       </div>
     </div>
     <div class="footer-col">
@@ -777,14 +777,14 @@ body:not(.is-admin) .md-editor-container { grid-template-columns: 1fr; }
 <!-- 1. 登录 -->
 <div id="modal-login" class="modal-overlay">
   <div class="modal-box">
-    <h3>🛡️ 验证权限</h3>
-    <p id="login-prompt-msg" style="color:#ff4757; font-size:14px; display:none; margin-top:-15px; margin-bottom:20px; font-weight:700;">⚠️ 请先登陆账户</p>
+    <h3>🛡️ LOG IN</h3>
+    <p id="login-prompt-msg" style="color:#ff4757; font-size:14px; display:none; margin-top:-15px; margin-bottom:20px; font-weight:700;">⚠️ Please log in your account</p>
     <label>Username</label><input type="text" id="login-user" autocomplete="off">
     <label>Password</label><input type="password" id="login-pass" autocomplete="off">
-    <p id="login-err" style="color:#ff4757; font-size:14px; display:none; margin-top:-10px; margin-bottom:15px; font-weight:600;">❌ 认证失败，请检查账号密码。</p>
+    <p id="login-err" style="color:#ff4757; font-size:14px; display:none; margin-top:-10px; margin-bottom:15px; font-weight:600;">❌ Your password is incorect</p>
     <div class="modal-actions">
-      <button class="btn-cancel" onclick="closeModal('modal-login')">取消</button>
-      <button class="btn-confirm" onclick="performLogin()">登录</button>
+      <button class="btn-cancel" onclick="closeModal('modal-login')">Cancel</button>
+      <button class="btn-confirm" onclick="performLogin()">Log in</button>
     </div>
   </div>
 </div>
