@@ -125,8 +125,7 @@ body{
   position: fixed; top: 70px; left: 0; bottom: 0; width: 280px;
   background: var(--surface); z-index: 999;
   transform: translateX(-100%); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: var(--shadow-lg); padding: 40px 30px;
-  border-right: 1px solid #e2e8f0;
+  box-shadow: var(--shadow-lg); padding: 40px 30px; border-right: 1px solid #e2e8f0;
 }
 .left-sidebar.active { transform: translateX(0); }
 
@@ -151,7 +150,7 @@ body.is-admin .media-card:hover .media-del-btn, body.is-admin .news-card-ui:hove
 body.is-admin .md-textarea { display: block !important; }
 
 /* ======================================================
-   全屏照片墙 (最上方引入屏)
+   全屏照片墙
 ====================================================== */
 .home-hero-banner {
   width: 100vw; height: calc(100vh - 70px); margin-left: calc(-50vw + 50%); margin-top: -40px; margin-bottom: 60px;
@@ -176,7 +175,7 @@ body.is-admin .md-textarea { display: block !important; }
 ====================================================== */
 .home-wrapper { max-width: 1500px; width: 100%; margin: 0 auto; display: flex; flex-direction: column; gap: 40px; }
 
-/* 巨型动态泡泡 + OOpology Logo */
+/* 巨型动态泡泡 */
 .hero-bubble {
   background: var(--gradient-flow); background-size: 400% 400%; animation: bgFlow 20s ease infinite; 
   border-radius: 36px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: #fff; box-shadow: 0 25px 50px rgba(0, 43, 94, 0.2); width: 100%; position: relative; overflow: hidden; padding: 100px 40px; 
@@ -194,24 +193,16 @@ body.is-admin .md-textarea { display: block !important; }
 .hero-bubble h2 { font-size: 56px; font-weight: 800; margin-bottom: 20px; letter-spacing: -1.5px; position: relative; z-index: 2; text-shadow: 0 4px 10px rgba(0,0,0,0.1);}
 .hero-bubble p { font-size: 24px; font-weight: 400; opacity: 0.95; max-width: 1000px; margin: 0 auto; line-height: 1.8; position: relative; z-index: 2;}
 
-/* 🔥 新增：首页最新动态模块 (Home Latest News) */
-.home-latest-news {
-  display: flex; align-items: center; gap: 25px;
-  background: var(--surface); padding: 25px 40px; border-radius: 24px;
-  box-shadow: var(--shadow-sm); cursor: pointer; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  border-left: 6px solid var(--brand-cyan);
-}
-.home-latest-news:hover {
-  transform: translateY(-5px); box-shadow: var(--shadow); border-left-color: var(--brand-dark);
-}
-.hln-icon { font-size: 38px; }
+/* 首页最新动态速递 */
+.home-latest-news { display: flex; align-items: center; gap: 25px; background: var(--surface); padding: 25px 40px; border-radius: 24px; box-shadow: var(--shadow); cursor: pointer; transition: all 0.3s; border-left: 6px solid var(--brand-cyan); }
+.home-latest-news:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); border-left-color: var(--brand-dark); }
+.hln-icon { font-size: 42px; }
 .hln-content { flex: 1; }
 .hln-meta { font-size: 14px; color: var(--brand-cyan); font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; display: flex; align-items: center; gap: 10px;}
 .hln-meta-date { color: var(--text-light); font-weight: 600; font-size: 13px;}
 .hln-title { font-size: 22px; color: var(--brand-dark); font-weight: 700; margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
 .hln-arrow { font-size: 28px; color: #cbd5e1; transition: 0.3s; font-weight: 300;}
 .home-latest-news:hover .hln-arrow { color: var(--brand-cyan); transform: translateX(8px); }
-
 
 /* 社交与介绍白卡 */
 .social-section { display: flex; align-items: stretch; gap: 60px; padding: 55px; background: var(--surface); border-radius: 30px; box-shadow: var(--shadow); width: 100%; transition: transform 0.4s ease; }
@@ -267,81 +258,89 @@ body.is-admin .md-textarea { display: block !important; }
 .home-hub-card p { color: var(--text-light); font-size: 15px; }
 
 /* ======================================================
-   🔥 独立新闻页面 (News Page) 
-====================================================== */
-#news-page .news-grid {
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px;
-}
-.news-card-ui {
-  background: var(--surface); padding: 35px; border-radius: 24px; box-shadow: var(--shadow-sm);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); cursor: pointer;
-  border-left: 6px solid var(--brand-cyan); border-right: 1px solid #e2e8f0; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;
-  position: relative;
-}
-.news-card-ui:hover { transform: translateY(-8px); box-shadow: var(--shadow); border-left-color: var(--brand-dark); }
-.news-card-ui .date { color: var(--brand-cyan); font-size: 14px; font-weight: 700; margin-bottom: 15px; letter-spacing: 1px; }
-.news-card-ui h3 { color: var(--brand-dark); font-size: 22px; margin-bottom: 15px; font-weight: 700; line-height: 1.4;}
-.news-card-ui p { color: var(--text-light); font-size: 15px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-
-/* ======================================================
-   🔥 独立 About 页面
-====================================================== */
-#about-page .about-wrapper {
-  background: var(--surface); border-radius: 30px; padding: 60px; box-shadow: var(--shadow);
-  max-width: 1200px; margin: 0 auto;
-}
-.about-hero { text-align: center; margin-bottom: 50px; }
-.about-hero h1 { font-size: 48px; color: var(--brand-dark); font-weight: 800; margin-bottom: 20px;}
-.about-hero p { font-size: 20px; color: var(--text-light); max-width: 800px; margin: 0 auto;}
-
-/* ======================================================
-   Academic Course Grid
+   三层课程体系架构 (3-Level Course Grid)
 ====================================================== */
 .section-header { margin-bottom: 40px; padding-left: 10px; }
 .section-header h2 { font-size: 40px; color: var(--brand-dark); margin-bottom: 15px; display: flex; align-items: center; gap: 15px; font-weight: 800; letter-spacing: -0.5px;}
 .section-desc { color: var(--text-light); font-size: 17px; }
 
-.course-grid{ display:flex; flex-direction:column; gap:26px; min-height: 50px; width: 100%;}
-.course-card{ background: var(--gradient-card); border-radius: 20px; box-shadow: var(--shadow-sm); color: #fff; overflow: hidden; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
-.course-card:hover{ transform: translateY(-4px); box-shadow: var(--shadow); }
+.course-grid { display:flex; flex-direction:column; gap:26px; min-height: 50px; width: 100%;}
+.course-card { background: var(--gradient-card); border-radius: 20px; box-shadow: var(--shadow-sm); color: #fff; overflow: hidden; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+.course-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
 .course-card.dragging { opacity: 0.5; box-shadow: var(--shadow-lg); transform: scale(1.02); }
+.course-header { display:flex; justify-content:space-between; align-items:center; padding:25px 40px; cursor:pointer; }
+.course-header h3 { font-size: 26px; font-weight: 700; margin: 0; letter-spacing: 0.5px;}
+.course-content { display:none; padding:15px 40px 35px; min-height: 20px; }
+.course-card.expanded > .course-content { display:flex; flex-direction: column; gap: 16px; animation:contentFadeIn .3s ease-out; }
 
-.course-header{ display:flex; justify-content:space-between; align-items:center; padding:25px 40px; cursor:pointer; }
-.course-header h3 { font-size: 24px; font-weight: 600; margin: 0; letter-spacing: 0.5px;}
-.header-right{ display:flex; align-items:center; gap:16px; }
-.arrow{ font-size:22px; transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
-.course-card.expanded .arrow{ transform:rotate(180deg); }
+.chapter-card { background: rgba(0, 0, 0, 0.15); border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.15); transition: all 0.3s; }
+.chapter-card:hover { border-color: rgba(255,255,255,0.4); background: rgba(0, 0, 0, 0.2); }
+.chapter-card.dragging { opacity: 0.5; transform: scale(1.02); }
+.chapter-header { display:flex; justify-content:space-between; align-items:center; padding:20px 30px; cursor:pointer; }
+.chapter-header h4 { font-size: 20px; font-weight: 600; margin: 0; color: #fff; }
+.chapter-content { display:none; padding:10px 30px 25px; min-height: 20px; }
+.chapter-card.expanded > .chapter-content { display:flex; flex-direction: column; gap: 12px; animation:contentFadeIn .2s ease-out; }
 
-.course-content{ display:none; padding:15px 40px 35px; min-height: 20px; }
-.course-card.expanded .course-content{ display:block; animation:contentFadeIn .3s ease-out; }
-
-.sub-card{ display:flex; justify-content:space-between; align-items:center; padding:18px 28px; border-radius:16px; background:rgba(255,255,255,.15); border:1px solid rgba(255,255,255,.3); margin-bottom:14px; cursor: pointer; transition: all 0.3s; }
-.sub-card:hover { background: rgba(255,255,255,.3); transform: translateX(10px); }
+.sub-card { display:flex; justify-content:space-between; align-items:center; padding:16px 24px; border-radius:12px; background: rgba(255,255,255, 0.1); border:1px solid rgba(255,255,255,0.2); cursor: pointer; transition: all 0.3s; }
+.sub-card:hover { background: rgba(255,255,255, 0.25); transform: translateX(10px); border-color: rgba(255,255,255,0.5); }
 .sub-card.dragging { opacity: 0.5; }
-.sub-text{ font-size:18px; font-weight: 600;}
+.sub-text { font-size:17px; font-weight: 600;}
 
-.title-add, .add-sub, .sub-del, .del-main { width:36px; height:36px; border-radius:50%; background:rgba(255,255,255,.2); border:1px solid rgba(255,255,255,.4); color:#fff; font-size:20px; font-weight:600; display:inline-flex; align-items:center; justify-content:center; cursor:pointer; transition:.3s ease; }
+.header-right { display:flex; align-items:center; gap:16px; }
+.arrow { font-size:22px; transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+.course-card.expanded > .course-header .arrow { transform:rotate(180deg); }
+.chapter-card.expanded > .chapter-header .arrow { transform:rotate(180deg); }
+
+.title-add, .add-chapter, .add-sub, .del-main, .del-chapter, .sub-del { width:36px; height:36px; border-radius:50%; background:rgba(255,255,255,.2); border:1px solid rgba(255,255,255,.4); color:#fff; font-size:20px; font-weight:600; display:inline-flex; align-items:center; justify-content:center; cursor:pointer; transition:.3s ease; }
 .title-add { background: var(--brand-dark); color: white; border: none; width: 46px; height: 46px; font-size: 26px; box-shadow: 0 4px 15px rgba(0,43,94,0.3);}
-.title-add:hover, .add-sub:hover, .sub-del:hover, .del-main:hover { background: #fff; color: var(--brand-dark); transform: scale(1.15); box-shadow: 0 0 15px rgba(255,255,255,0.5); }
+.title-add:hover, .add-chapter:hover, .add-sub:hover, .del-main:hover, .del-chapter:hover, .sub-del:hover { background: #fff; color: var(--brand-dark); transform: scale(1.15); box-shadow: 0 0 15px rgba(255,255,255,0.5); }
 .sub-del { width: 28px; height: 28px; font-size: 14px; }
+
+
+/* ======================================================
+   🔥 独立新闻页面 (横向撑满、从上往下的宽卡片) 
+====================================================== */
+#news-list-page .news-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 1200px; /* 限制一下最大宽度让阅读更舒适 */
+  margin: 0 auto;
+}
+.news-card-ui {
+  background: var(--surface); padding: 35px 45px; border-radius: 24px; box-shadow: var(--shadow-sm);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); cursor: pointer;
+  border-left: 6px solid var(--brand-cyan); border-right: 1px solid #e2e8f0; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;
+  position: relative;
+  width: 100%;
+}
+.news-card-ui:hover { transform: translateX(8px); box-shadow: var(--shadow); border-left-color: var(--brand-dark); }
+.news-card-ui .date { color: var(--brand-cyan); font-size: 15px; font-weight: 700; margin-bottom: 12px; letter-spacing: 1px; }
+.news-card-ui h3 { color: var(--brand-dark); font-size: 26px; margin-bottom: 15px; font-weight: 800; line-height: 1.4;}
+.news-card-ui p { color: var(--text-light); font-size: 16px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.6;}
+
+/* ======================================================
+   🔥 独立 About 页面
+====================================================== */
+#about-page .about-wrapper { background: var(--surface); border-radius: 30px; padding: 60px; box-shadow: var(--shadow); max-width: 1200px; margin: 0 auto; }
+.about-hero { text-align: center; margin-bottom: 50px; }
+.about-hero h1 { font-size: 48px; color: var(--brand-dark); font-weight: 800; margin-bottom: 20px;}
+.about-hero p { font-size: 20px; color: var(--text-light); max-width: 800px; margin: 0 auto;}
 
 /* ======================================================
    个人中心 (Account) 
 ====================================================== */
 #account-container { display: flex; gap: 40px; background: var(--surface); border-radius: 30px; padding: 50px; box-shadow: var(--shadow); min-height: 700px; width: 100%; }
 @media(max-width: 900px){ #account-container { flex-direction: column; } }
-
 .account-sidebar { width: 280px; border-right: 2px solid var(--bg-color); padding-right: 30px; }
 .account-sidebar ul { list-style: none; }
 .account-sidebar li { padding: 16px 20px; border-radius: 16px; margin-bottom: 12px; font-size: 16px; font-weight: 600; color: var(--text-light); cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; gap: 12px; }
 .account-sidebar li:hover { background: var(--bg-color); color: var(--brand-dark); }
 .account-sidebar li.active { background: var(--gradient-flow); color: #fff; box-shadow: var(--shadow-sm);}
-
 .account-main { flex: 1; padding-left: 20px; position: relative;}
 .account-main h2 { font-size: 36px; color: var(--brand-dark); margin-bottom: 30px; font-weight: 800;}
 .account-tab-content { display: none; animation: contentFadeIn 0.3s ease-out; }
 .account-tab-content.active { display: block; }
-
 .profile-card { display: flex; align-items: center; gap: 30px; background: var(--bg-color); padding: 40px; border-radius: 24px; margin-bottom: 40px; position: relative;}
 .profile-avatar-wrapper { position: relative; width: 110px; height: 110px; border-radius: 50%; cursor: pointer; box-shadow: var(--shadow-sm); overflow: hidden; background: var(--gradient-card); display: flex; justify-content: center; align-items: center; border: 4px solid #fff; transition: all 0.3s ease; }
 body.is-admin .profile-avatar-wrapper:hover { filter: brightness(0.85); transform: scale(1.05); }
@@ -352,18 +351,18 @@ body.is-admin .profile-avatar-wrapper:hover::after { opacity: 1; }
 .profile-info h3 { font-size: 28px; color: var(--brand-dark); margin-bottom: 5px; }
 .profile-info p { color: var(--text-light); font-size: 16px; }
 .status-badge { display: inline-block; padding: 6px 12px; background: #dcfce7; color: #059669; border-radius: 20px; font-size: 13px; font-weight: 700; margin-top: 10px; }
-
 .settings-card { background: #fff; border: 1px solid #e2e8f0; padding: 30px; border-radius: 20px; margin-bottom: 20px;}
 .settings-card h4 { font-size: 20px; color: var(--brand-dark); margin-bottom: 15px;}
 .settings-card p { color: var(--text-light); line-height: 1.8; font-size: 15px;}
 
 /* ======================================================
-   Sub-Page (全屏工作站: 课程与新闻公用布局)
+   Sub-Page (全屏工作站: 课程节点与新闻公用布局)
 ====================================================== */
 #page-container, #news-detail-page { background: var(--surface); border-radius: 30px; padding: 60px 70px; box-shadow: var(--shadow); min-height: 800px; width: 100%; }
 .page-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
 .page-header h1 { color: var(--brand-dark); font-size: 46px; font-weight: 800; letter-spacing: -1px; }
 
+/* 返回按钮通用样式 */
 button.back-btn{ background:#f1f5f9; border:none; color:var(--brand-dark); padding:14px 28px; border-radius:14px; cursor:pointer; font-weight: 700; transition: all 0.3s; font-size: 16px; }
 button.back-btn:hover{background:var(--brand-cyan); color:#fff; transform: translateX(-6px); box-shadow: var(--shadow-sm);}
 
@@ -374,7 +373,6 @@ button.back-btn:hover{background:var(--brand-cyan); color:#fff; transform: trans
 
 .md-editor-container { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; margin-bottom: 60px; min-height: 500px; width: 100%; }
 body:not(.is-admin) .md-editor-container { grid-template-columns: 1fr; }
-
 .md-textarea { background: #1e293b; color: #e2e8f0; border: none; border-radius: 20px; padding: 30px; font-family: 'Fira Code', Consolas, monospace; font-size: 16px; resize: vertical; outline: none; line-height: 1.7; width: 100%; box-shadow: inset 0 5px 20px rgba(0,0,0,0.5); }
 .md-preview { background: #fff; border: 1px solid #e2e8f0; border-radius: 20px; padding: 40px; overflow-y: auto; box-shadow: inset 0 2px 10px rgba(0,0,0,0.02); font-size: 17px; width: 100%; color: #334155; }
 .md-preview h1, .md-preview h2, .md-preview h3 { color: var(--brand-dark); margin-top: 1.5em; margin-bottom: 0.5em; }
@@ -442,6 +440,8 @@ body:not(.is-admin) .md-editor-container { grid-template-columns: 1fr; }
 .viewer-header { background: #020617; padding: 20px 30px; display: flex; justify-content: space-between; align-items: center; color: white; border-bottom: 1px solid #1e293b; }
 .viewer-content { flex: 1; background: #0f172a; display: flex; justify-content: center; align-items: center;}
 .viewer-content iframe { width: 100%; height: 100%; border: none; }
+.viewer-download-btn { background: var(--brand-cyan); color: #000; padding: 10px 22px; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 15px; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 15px rgba(0, 201, 167, 0.4); }
+.viewer-download-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0, 201, 167, 0.6); background: #fff; color: var(--brand-dark); }
 
 #modal-rename .modal-box { width: 360px; }
 
@@ -456,7 +456,7 @@ body:not(.is-admin) .md-editor-container { grid-template-columns: 1fr; }
 
 <body>
 
-<!-- 🌟 左侧隐藏抽屉式导航栏 (Sidebar) -->
+<!-- 🌟 左侧隐藏抽屉式导航栏 -->
 <div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
 <aside class="left-sidebar" id="left-sidebar">
   <ul>
@@ -466,9 +466,7 @@ body:not(.is-admin) .md-editor-container { grid-template-columns: 1fr; }
 </aside>
 
 <nav class="navbar">
-  <!-- 点击文字弹出左侧菜单 -->
   <div class="nav-brand" onclick="toggleSidebar()" title="Menu">☰ OpologyLab</div>
-  
   <div class="nav-links-container">
     <a data-target="home" class="nav-item active" onclick="navigate('home')">🏠 Home</a>
     <a data-target="math" class="nav-item" onclick="navigate('math')">📐 MATH</a>
@@ -478,7 +476,6 @@ body:not(.is-admin) .md-editor-container { grid-template-columns: 1fr; }
     <a data-target="yoyo" class="nav-item" onclick="navigate('yoyo')">🪀 YoYo</a> 
     <a data-target="music" class="nav-item" onclick="navigate('music')">🎵 MUSIC</a>
   </div>
-
   <div class="nav-controls">
     <button class="nav-btn" id="accountBtn" onclick="openAccountPage()">👤 Account</button>
     <button class="nav-btn" id="loginBtn" onclick="openLoginModal()">🛡️ Admin</button>
@@ -491,7 +488,6 @@ body:not(.is-admin) .md-editor-container { grid-template-columns: 1fr; }
     <!-- ================= 首页 ================= -->
     <div id="home" class="section active">
       
-      <!-- 全屏视差滚动图片墙 -->
       <div class="home-hero-banner">
         <div class="hero-banner-text">
           <h1>OpologyLab</h1>
@@ -502,31 +498,29 @@ body:not(.is-admin) .md-editor-container { grid-template-columns: 1fr; }
 
       <div class="home-wrapper" id="home-content-start">
         
-        <!-- 巨型蓝框 + OOpology Logo -->
         <div class="hero-bubble">
           <img src="OOpologylogo.png" alt="Opology Logo" class="hero-logo" onerror="this.style.display='none'">
           <h2>Welcome to OpologyLab</h2>
           <p>This platform brings together my research in mathematics, physics, mechatronics, and control systems. Here, you can explore my projects, lecture notes, and research records.</p>
         </div>
 
-        <!-- 🔥 新增：首页最新动态模块 (Home Latest News) -->
-        <div class="home-latest-news" id="home-latest-news" style="display: none;" onclick="goToLatestNews()">
+        <!-- 🔥 首页最新动态速递 -->
+        <div class="home-latest-news" id="home-latest-news" onclick="goToLatestNews()">
           <div class="hln-icon">📰</div>
           <div class="hln-content">
             <div class="hln-meta">Latest Update <span id="hln-date"></span></div>
-            <h3 id="hln-title">Loading...</h3>
+            <h3 id="hln-title">🎉 欢迎来到全新升级的 OpologyLab 研究平台！(点击前往发布)</h3>
           </div>
           <div class="hln-arrow">➔</div>
         </div>
 
-        <!-- 白色社交介绍区 -->
         <div class="social-section">
           <div class="social-left">
             <h3>🌐 My Platforms</h3>
             <a href="https://space.bilibili.com/388315729" target="_blank" title="Bilibili">📺<span>Bilibili</span></a>
-            <a href="https://youtube.com/@opology369?si=SrAouvF5ExPzayqD" target="_blank" title="YouTube">▶️<span>YouTube</span></a>
-            <a href="https://github.com/dashboard" target="_blank" title="Github">💻<span>Github</span></a>
-            <a href="https://www.instagram.com/opology_lab" target="_blank" title="Instagram">📸<span>Instagram</span></a>
+            <a href="https://www.youtube.com/@OshawnXi" target="_blank" title="YouTube">▶️<span>YouTube</span></a>
+            <a href="https://github.com/Oshawn369" target="_blank" title="Github">💻<span>Github</span></a>
+            <a href="https://www.instagram.com/haiyang_xi" target="_blank" title="Instagram">📸<span>Instagram</span></a>
             <a href="https://x.com/xihaiyang3" target="_blank" title="X (Twitter)">🐦<span>X</span></a>
           </div>
           <div class="social-intro">
@@ -541,20 +535,18 @@ body:not(.is-admin) .md-editor-container { grid-template-columns: 1fr; }
           </div>
         </div>
 
-        <!-- 加长版：沉浸式知识流动地图 -->
         <div class="learning-path-map">
           <h2 class="map-title">🧭 Academic Knowledge Flow</h2>
           <div class="path-timeline">
-            <div class="path-node"><div class="path-card"><h4>📐 Mathematics Theory</h4><p>Calculus,Linear Algebra~ pure maths courses lists</p></div></div>
-            <div class="path-node"><div class="path-card"><h4>⚛️ Physics Dynamics</h4><p>Classic physicis, electricity, etc</p></div></div>
-            <div class="path-node"><div class="path-card"><h4>⚙️ Mechatronics </h4><p>embedded systems etc coirsers </p></div></div>
-            <div class="path-node"><div class="path-card"><h4>📡 control system</h4><p>classic control, modern control, robust control systems</p></div></div>
-            <div class="path-node"><div class="path-card"><h4>💻 Research Projects</h4><p>Real world applications projects</p></div></div>
+            <div class="path-node"><div class="path-card"><h4>📐 Mathematics Theory</h4><p>微积分、线性代数与复变函数，构建坚实的逻辑底层，为复杂系统建模提供纯粹的数学支撑。</p></div></div>
+            <div class="path-node"><div class="path-card"><h4>⚛️ Physics Dynamics</h4><p>经典力学与空间动力学，从理论数学向现实世界过渡，定义真实物理状态的演化规律。</p></div></div>
+            <div class="path-node"><div class="path-card"><h4>⚙️ Mechatronics Control</h4><p>传感器数据采集、执行器响应与嵌入式架构，物理世界与数字控制交汇的核心神经中枢。</p></div></div>
+            <div class="path-node"><div class="path-card"><h4>📡 Signal Processing</h4><p>状态空间分析、经典频域反馈与自适应算法滤波，在噪声与干扰中精准提取有效信息。</p></div></div>
+            <div class="path-node"><div class="path-card"><h4>💻 Research Projects</h4><p>从理论到工程：无人车底盘解算、多智能体协同仿真、前沿控制算法在现实场景中的综合落地与验证。</p></div></div>
           </div>
           <div class="map-footer"><h2>Let's go! <span>Explore</span> your academic path.</h2></div>
         </div>
 
-        <!-- 六大模块直达网格 -->
         <div class="home-grid">
           <div class="home-hub-card" onclick="navigate('math')"><div class="icon">📐</div><h3>Mathematics</h3><p>微积分、线性代数、复变函数及数学核心课程。</p></div>
           <div class="home-hub-card" onclick="navigate('mech')"><div class="icon">⚙️</div><h3>Mechatronics</h3><p>嵌入式架构、传感器信号处理与硬件控制系统。</p></div>
@@ -592,8 +584,12 @@ body:not(.is-admin) .md-editor-container { grid-template-columns: 1fr; }
       <div class="course-grid" id="grid-music"></div>
     </div>
 
-    <!-- ================= 🔥 新增：About 页面 ================= -->
+    <!-- ================= 🔥 修复：带有返回按钮的 About 页面 ================= -->
     <div id="about-page" class="section">
+      <div style="max-width: 1200px; margin: 0 auto 30px; display: flex; justify-content: space-between; align-items: center;">
+        <h2 style="color: var(--brand-dark); font-size: 32px; font-weight: 800;">💡 About Lab</h2>
+        <button class="back-btn" onclick="navigate('home')">🔙 返回首页</button>
+      </div>
       <div class="about-wrapper">
         <div class="about-hero">
           <h1>Welcome to OpologyLab</h1>
@@ -602,53 +598,56 @@ body:not(.is-admin) .md-editor-container { grid-template-columns: 1fr; }
       </div>
     </div>
 
-    <!-- ================= 🔥 新增：News 新闻列表页 ================= -->
+    <!-- ================= 🔥 修复：横向撑满的新闻列表页 ================= -->
     <div id="news-list-page" class="section">
-      <div class="section-header" style="margin-bottom: 50px;">
-        <h2>📰 Lab News & Updates <button class="title-add admin-only" onclick="createNewNews()">＋</button></h2>
-        <p class="section-desc">Newest Lab information update</p>
+      <div class="section-header" style="max-width: 1200px; margin: 0 auto 40px auto;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+           <h2>📰 Lab News & Updates <button class="title-add admin-only" onclick="createNewNews()">＋</button></h2>
+           <button class="back-btn" onclick="navigate('home')">🔙 返回首页</button>
+        </div>
+        <p class="section-desc">实验室最新研究动态、项目开源记录与学术更新日志。</p>
       </div>
       <div class="news-grid" id="grid-news-list">
         <!-- 动态卡片插入区 -->
       </div>
     </div>
 
-    <!-- ================= 🔥 新增：News 新闻详情页 ================= -->
+    <!-- ================= News 新闻详情页 ================= -->
     <div id="news-detail-page" class="section">
       <div class="page-header">
         <h1 id="news-detail-title">Loading News...</h1>
-        <button class="back-btn" onclick="navigate('news-list-page')">🔙 Return news list</button>
+        <button class="back-btn" onclick="navigate('news-list-page')">🔙 返回新闻列表</button>
       </div>
       <div class="subpage-desc-bar">
-        🕒 Upload Time: <span id="news-detail-date"></span>
+        🕒 发布时间: <span id="news-detail-date"></span>
       </div>
       <div class="md-editor-container">
-        <textarea class="md-textarea" id="news-md-input" placeholder="✍️ Writting news for Markdown & LaTeX..."></textarea>
+        <textarea class="md-textarea" id="news-md-input" placeholder="✍️ 撰写新闻详情 (支持 Markdown & LaTeX)..."></textarea>
         <div class="md-preview" id="news-md-output"></div>
       </div>
     </div>
 
-    <!-- ================= 子页面 (课程/模块专用) ================= -->
+    <!-- ================= 子页面 (最内层节点内容/编辑器) ================= -->
     <div id="page-container" class="section">
       <div class="page-header">
         <h1 id="page-title">Loading...</h1>
-        <button id="back-btn" class="back-btn">🔙 Return back</button>
+        <button class="back-btn" onclick="goBackToSection()">🔙 返回上级</button>
       </div>
       <div class="subpage-desc-bar">
-        <div class="desc-content" id="page-desc" contenteditable="false">📝 The informations for the coursers, adminer can edit</div>
-        <div class="desc-meta">🕒Update to <span id="page-date">Just</span></div>
+        <div class="desc-content" id="page-desc" contenteditable="false">📝 这里是在线说明栏。管理员登录后可直接点击修改。</div>
+        <div class="desc-meta">🕒 更新于: <span id="page-date">刚刚</span></div>
       </div>
       <div class="md-editor-container">
-        <textarea class="md-textarea" id="md-input" placeholder="✍️ Input Markdown or LaTeX  (example $$e^{i\pi} + 1 = 0$$)..."></textarea>
+        <textarea class="md-textarea" id="md-input" placeholder="✍️ 输入 Markdown 文本或 LaTeX 公式 (例如 $$e^{i\pi} + 1 = 0$$)..."></textarea>
         <div class="md-preview" id="md-output"></div>
       </div>
       <div class="media-split-container">
         <div class="subpage-section">
-          <h3>📖 PDF Library <button class="subpage-add-btn admin-only" onclick="openAddMedia('pdf')">＋Upload PDF</button></h3>
+          <h3>📖 PDF Library <button class="subpage-add-btn admin-only" onclick="openAddMedia('pdf')">＋ 上传文献</button></h3>
           <div class="media-grid" id="pdf-grid"></div>
         </div>
         <div class="subpage-section">
-          <h3>🎬 Video Cinema <button class="subpage-add-btn admin-only" onclick="openAddMedia('video')">＋Videos link</button></h3>
+          <h3>🎬 Video Cinema <button class="subpage-add-btn admin-only" onclick="openAddMedia('video')">＋ 链接视频</button></h3>
           <div class="media-grid" id="video-grid"></div>
         </div>
       </div>
@@ -659,9 +658,9 @@ body:not(.is-admin) .md-editor-container { grid-template-columns: 1fr; }
       <div id="account-container">
         <aside class="account-sidebar">
           <ul>
-            <li class="active" onclick="switchAccountTab('profile', this)">👤 Profile</li>
-            <li onclick="switchAccountTab('settings', this)">⚙️ Setting</li>
-            <li onclick="switchAccountTab('data', this)">💾 Data mangments</li>
+            <li class="active" onclick="switchAccountTab('profile', this)">👤 个人资料</li>
+            <li onclick="switchAccountTab('settings', this)">⚙️ 系统设置</li>
+            <li onclick="switchAccountTab('data', this)">💾 数据管理</li>
           </ul>
         </aside>
         <main class="account-main">
@@ -683,11 +682,12 @@ body:not(.is-admin) .md-editor-container { grid-template-columns: 1fr; }
               <h4>🛡️ 账户权限状态</h4>
               <p>您当前已登录为超级管理员。在此状态下，您拥有以下完整权限：</p>
               <ul style="margin-left: 20px; margin-top: 10px; color: var(--text-light); line-height: 1.8;">
-                <li>动态构建与删除各学科体系的主课程架构。</li>
-                <li>新增、编辑、删除具体的学术子节点内容，发布实验室新闻。</li>
+                <li>建立三级架构：大板块 ➔ 章节模块 ➔ 核心节点。</li>
+                <li>新增、编辑、删除具体的学术节点内容，发布实验室新闻。</li>
                 <li>使用在线 Markdown 与 $\LaTeX$ 渲染器编写专业文献。</li>
                 <li>上传本地 PDF 及导入外部视频链接。</li>
                 <li>使用鼠标右键点击任意卡片进行快捷重命名。</li>
+                <li>自由嵌套拖拽排序 (支持跨板块拖拽)。</li>
               </ul>
             </div>
           </div>
@@ -727,10 +727,10 @@ body:not(.is-admin) .md-editor-container { grid-template-columns: 1fr; }
   <div class="footer-grid">
     <div class="footer-col">
       <img src="OOpologylogo.png" alt="OpologyLab Logo" class="footer-brand-logo" onerror="this.style.display='none'">
-      <p class="footer-desc">OpologyLab For maths, comupter systems and control systems</p>
+      <p class="footer-desc">OpologyLab 致力于数学推导、机电硬件架构与自适应控制算法的深度科研与工程落地探索。</p>
       <div class="footer-contact">
         <p>📍 <strong>Location:</strong> Toronto, Ontario, Canada</p>
-        <p>✉️ <strong>Email:</strong>opology369@gmail.com</p>
+        <p>✉️ <strong>Email:</strong> oshawn@opologylab.com</p>
       </div>
     </div>
     <div class="footer-col">
@@ -774,22 +774,20 @@ body:not(.is-admin) .md-editor-container { grid-template-columns: 1fr; }
 <!-- ======================================================
      Modals
 ====================================================== -->
-<!-- 1. 登录 -->
 <div id="modal-login" class="modal-overlay">
   <div class="modal-box">
-    <h3>🛡️ LOG IN</h3>
-    <p id="login-prompt-msg" style="color:#ff4757; font-size:14px; display:none; margin-top:-15px; margin-bottom:20px; font-weight:700;">⚠️ Please log in your account</p>
+    <h3>🛡️ 验证权限</h3>
+    <p id="login-prompt-msg" style="color:#ff4757; font-size:14px; display:none; margin-top:-15px; margin-bottom:20px; font-weight:700;">⚠️ 请先登陆账户</p>
     <label>Username</label><input type="text" id="login-user" autocomplete="off">
     <label>Password</label><input type="password" id="login-pass" autocomplete="off">
-    <p id="login-err" style="color:#ff4757; font-size:14px; display:none; margin-top:-10px; margin-bottom:15px; font-weight:600;">❌ Your password is incorect</p>
+    <p id="login-err" style="color:#ff4757; font-size:14px; display:none; margin-top:-10px; margin-bottom:15px; font-weight:600;">❌ 认证失败，请检查账号密码。</p>
     <div class="modal-actions">
-      <button class="btn-cancel" onclick="closeModal('modal-login')">Cancel</button>
-      <button class="btn-confirm" onclick="performLogin()">Log in</button>
+      <button class="btn-cancel" onclick="closeModal('modal-login')">取消</button>
+      <button class="btn-confirm" onclick="performLogin()">登录</button>
     </div>
   </div>
 </div>
 
-<!-- 2. 添加 -->
 <div id="modal-add" class="modal-overlay">
   <div class="modal-box">
     <h3 id="add-title">➕ 添加内容</h3>
@@ -802,7 +800,6 @@ body:not(.is-admin) .md-editor-container { grid-template-columns: 1fr; }
   </div>
 </div>
 
-<!-- 3. 媒体 -->
 <div id="modal-media" class="modal-overlay">
   <div class="modal-box">
     <h3 id="media-title">📂 导入媒体</h3>
@@ -816,7 +813,6 @@ body:not(.is-admin) .md-editor-container { grid-template-columns: 1fr; }
   </div>
 </div>
 
-<!-- 4. 删除 -->
 <div id="modal-delete" class="modal-overlay">
   <div class="modal-box">
     <h3 style="color:#ff4757;">⚠️ 移除确认</h3>
@@ -828,7 +824,6 @@ body:not(.is-admin) .md-editor-container { grid-template-columns: 1fr; }
   </div>
 </div>
 
-<!-- 5. 播放器 -->
 <div id="viewer-overlay" class="modal-overlay">
   <div class="modal-box">
     <div class="viewer-header">
@@ -842,7 +837,6 @@ body:not(.is-admin) .md-editor-container { grid-template-columns: 1fr; }
   </div>
 </div>
 
-<!-- 6. 重命名 -->
 <div id="modal-rename" class="modal-overlay">
   <div class="modal-box">
     <h3>✏️ 重命名</h3>
@@ -854,7 +848,6 @@ body:not(.is-admin) .md-editor-container { grid-template-columns: 1fr; }
   </div>
 </div>
 
-<!-- 7. 头像上传与裁剪工作台 -->
 <div id="modal-avatar-crop" class="modal-overlay">
   <div class="modal-box">
     <h3>📸 头像调整控制台</h3>
@@ -880,7 +873,7 @@ let isAdmin = false;
 let currentSection = 'home';
 let activeSubCardData = null; 
 let activeNewsCardData = null; 
-let latestNewsRef = null; // 缓存首页展示的最新一条新闻节点
+let latestNewsRef = null; 
 
 let saveTimer = null;
 let mdRenderTimer = null;
@@ -905,14 +898,13 @@ document.addEventListener("DOMContentLoaded", () => {
   
   document.querySelectorAll('.course-grid').forEach(grid => initDragAndDrop(grid));
 
-  // Markdown 监听 (课程页)
+  // Markdown Editors Setup
   document.getElementById('md-input').addEventListener('input', () => {
     clearTimeout(mdRenderTimer);
     mdRenderTimer = setTimeout(() => { renderMarkdownOutput('md-input', 'md-output'); autoSaveSubPageContent(); }, 800);
   });
   document.getElementById('page-desc').addEventListener('blur', () => { if(isAdmin) autoSaveSubPageContent(); });
 
-  // Markdown 监听 (新闻页)
   document.getElementById('news-md-input').addEventListener('input', () => {
     clearTimeout(newsMdRenderTimer);
     newsMdRenderTimer = setTimeout(() => { renderMarkdownOutput('news-md-input', 'news-md-output'); autoSaveNewsContent(); }, 800);
@@ -959,7 +951,6 @@ function setAdmin(status) {
   isAdmin = status;
   const btn = document.getElementById('loginBtn'); const accBtn = document.getElementById('accountBtn');
   btn.textContent = status ? '🔓 Logout' : '🛡️ Admin';
-  
   if(status) {
     btn.classList.add('logged-in'); accBtn.classList.add('logged-in'); document.body.classList.add('is-admin'); 
     document.getElementById('page-desc').setAttribute('contenteditable', 'true');
@@ -972,23 +963,20 @@ function setAdmin(status) {
 }
 
 /* =====================================================
-   Sidebar Navigation (左侧抽屉)
+   Sidebar Navigation
 ===================================================== */
 function toggleSidebar() {
   const sidebar = document.getElementById('left-sidebar');
   const overlay = document.getElementById('sidebar-overlay');
-  sidebar.classList.toggle('active');
-  overlay.classList.toggle('active');
+  sidebar.classList.toggle('active'); overlay.classList.toggle('active');
 }
 
 function navigate(targetId) {
   if (targetId === 'page-container' || targetId === 'news-detail-page') return;
   document.querySelectorAll('.navbar a.nav-item').forEach(a => { a.classList.toggle('active', a.dataset.target === targetId); });
   document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
-  
   const targetEl = document.getElementById(targetId);
   targetEl.classList.remove('active'); void targetEl.offsetWidth; targetEl.classList.add('active');
-  
   currentSection = targetId; localStorage.setItem("currentSection", targetId); window.scrollTo(0,0);
 }
 
@@ -1043,162 +1031,110 @@ function confirmAvatarCrop() {
   ctx.clearRect(0, 0, CROP_SIZE, CROP_SIZE); ctx.save(); ctx.translate(cropperData.panX, cropperData.panY); ctx.scale(cropperData.scale, cropperData.scale); ctx.drawImage(imgEl, 0, 0); ctx.restore();
   const finalBase64 = canvas.toDataURL('image/png'); localStorage.setItem('opo_avatar', finalBase64); closeModal('modal-avatar-crop'); loadSavedAvatar(); 
 }
-
 function closeModal(id) { document.getElementById(id).classList.remove('active'); }
 
 /* =====================================================
-   Card Creation
+   🔥 核心 DOM: 三层架构创建 
 ===================================================== */
 function createCourseCard(title, id) {
   const card = document.createElement('div'); card.className = 'course-card'; card.draggable = true; card.id = id || `c-${Date.now()}`;
-  card.innerHTML = `<div class="course-header"><h3>${title}</h3><div class="header-right"><button class="add-sub admin-only" title="添加子课程">＋</button><button class="del-main admin-only" title="删除板块">−</button><span class="arrow">▼</span></div></div><div class="course-content"></div>`;
+  card.innerHTML = `<div class="course-header"><h3>${title}</h3><div class="header-right"><button class="add-chapter admin-only" title="添加二级模块">＋</button><button class="del-main admin-only" title="删除整个板块">−</button><span class="arrow">▼</span></div></div><div class="course-content"></div>`;
   return card;
 }
-
+function createChapterCard(title, id) {
+  const chapter = document.createElement('div'); chapter.className = 'chapter-card'; chapter.draggable = true; chapter.dataset.id = id || `ch-${Date.now()}`;
+  chapter.innerHTML = `<div class="chapter-header"><h4>${title}</h4><div class="header-right"><button class="add-sub admin-only" title="添加三级具体节点">＋</button><button class="del-chapter admin-only" title="删除模块">−</button><span class="arrow">▼</span></div></div><div class="chapter-content"></div>`;
+  return chapter;
+}
 function createSubCard(name, id, dataStr) {
   const sub = document.createElement('div'); sub.className = 'sub-card'; sub.draggable = true; sub.dataset.id = id || `s-${Date.now()}`;
   const defaultData = { pdfs: [], videos: [], desc: "📝 这里是在线说明栏。管理员登录后可直接点击修改保存。", md: "# ✨ 记录您的灵感\n支持 **Markdown** 与 $\\LaTeX$ 公式。" };
   sub.dataset.dataStr = dataStr || JSON.stringify(defaultData);
-  sub.innerHTML = `<span class="sub-text">${name}</span><button class="sub-del admin-only" title="删除">−</button>`;
+  sub.innerHTML = `<span class="sub-text">${name}</span><button class="sub-del admin-only" title="删除节点">−</button>`;
   return sub;
 }
 
 /* =====================================================
-   🔥 新闻中心 (News) 逻辑 & 首页动态速递
+   新闻中心逻辑 & 首页动态同步
 ===================================================== */
 function createNewsCard(title, id, date, mdContent) {
-  const card = document.createElement('div');
-  card.className = 'news-card-ui';
-  card.dataset.id = id || `n-${Date.now()}`;
-  card.dataset.md = mdContent || "📝 撰写新闻详情...\n支持Markdown与公式。";
-  
-  const d = date || new Date();
-  const dateStr = typeof d === 'string' ? d : `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')}`;
+  const card = document.createElement('div'); card.className = 'news-card-ui'; card.dataset.id = id || `n-${Date.now()}`; card.dataset.md = mdContent || "📝 撰写新闻详情...\n支持Markdown与公式。";
+  const d = date || new Date(); const dateStr = typeof d === 'string' ? d : `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')}`;
   card.dataset.date = dateStr;
-
-  card.innerHTML = `
-    <div class="date">🕒 ${dateStr}</div>
-    <h3>${title}</h3>
-    <button class="media-del-btn admin-only" style="top:10px;right:10px;" title="删除新闻">✕</button>
-  `;
+  card.innerHTML = `<div class="date">🕒 ${dateStr}</div><h3>${title}</h3><button class="media-del-btn admin-only" style="top:10px;right:10px;" title="删除新闻">✕</button>`;
   return card;
 }
 
 function createNewNews() {
-  addState.mode = 'news';
-  document.getElementById('add-title').textContent = '📰 发布新动态';
-  document.getElementById('add-input').value = '';
-  document.getElementById('modal-add').classList.add('active');
-  setTimeout(()=>document.getElementById('add-input').focus(), 100);
+  addState.mode = 'news'; document.getElementById('add-title').textContent = '📰 发布新动态'; document.getElementById('add-input').value = ''; document.getElementById('modal-add').classList.add('active'); setTimeout(()=>document.getElementById('add-input').focus(), 100);
 }
 
 function enterNewsPage(newsCardDom) {
-  activeNewsCardData = newsCardDom;
-  document.getElementById('news-detail-title').textContent = newsCardDom.querySelector('h3').textContent;
-  document.getElementById('news-detail-date').textContent = newsCardDom.dataset.date;
-  
-  document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
-  const pageContainer = document.getElementById('news-detail-page');
-  pageContainer.classList.remove('active'); void pageContainer.offsetWidth; pageContainer.classList.add('active');
-  
+  activeNewsCardData = newsCardDom; document.getElementById('news-detail-title').textContent = newsCardDom.querySelector('h3').textContent; document.getElementById('news-detail-date').textContent = newsCardDom.dataset.date;
+  document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active')); const pageContainer = document.getElementById('news-detail-page'); pageContainer.classList.remove('active'); void pageContainer.offsetWidth; pageContainer.classList.add('active');
   renderNewsPage(); window.scrollTo(0,0);
 }
 
 function renderNewsPage() {
-  if(!activeNewsCardData) return;
-  document.getElementById('news-md-input').value = activeNewsCardData.dataset.md || "";
-  renderMarkdownOutput('news-md-input', 'news-md-output');
+  if(!activeNewsCardData) return; document.getElementById('news-md-input').value = activeNewsCardData.dataset.md || ""; renderMarkdownOutput('news-md-input', 'news-md-output');
 }
 
 function autoSaveNewsContent() {
-  if(!activeNewsCardData) return;
-  activeNewsCardData.dataset.md = document.getElementById('news-md-input').value;
-  requestSave();
+  if(!activeNewsCardData) return; activeNewsCardData.dataset.md = document.getElementById('news-md-input').value; requestSave();
 }
 
-// 🌟 同步最新一条新闻到首页的逻辑
 function syncHomeLatestNews() {
-  const newsList = document.getElementById('grid-news-list');
-  const latestCard = newsList.querySelector('.news-card-ui');
-  const homeNewsModule = document.getElementById('home-latest-news');
-
+  const newsList = document.getElementById('grid-news-list'); const latestCard = newsList.querySelector('.news-card-ui'); const homeNewsModule = document.getElementById('home-latest-news');
   if (latestCard) {
-    latestNewsRef = latestCard;
-    document.getElementById('hln-date').textContent = "• " + latestCard.dataset.date;
-    document.getElementById('hln-title').textContent = latestCard.querySelector('h3').textContent;
-    homeNewsModule.style.display = 'flex';
+    latestNewsRef = latestCard; document.getElementById('hln-date').textContent = "• " + latestCard.dataset.date; document.getElementById('hln-title').textContent = latestCard.querySelector('h3').textContent;
   } else {
-    latestNewsRef = null;
-    homeNewsModule.style.display = 'none';
+    latestNewsRef = null; document.getElementById('hln-date').textContent = ""; document.getElementById('hln-title').textContent = "🎉 欢迎来到全新升级的 OpologyLab 研究平台！(点击前往发布)";
   }
 }
-
-function goToLatestNews() {
-  if(latestNewsRef) {
-    navigate('news-list-page'); // 确保导航状态正确
-    enterNewsPage(latestNewsRef);
-  }
-}
+function goToLatestNews() { navigate('news-list-page'); if(latestNewsRef) { enterNewsPage(latestNewsRef); } }
 
 /* =====================================================
-   Left Click Operations 
+   Left Click Operations (3 层架构适配)
 ===================================================== */
 function openAddCourse(sectionId) {
-  addState.mode = 'main'; addState.targetId = sectionId;
-  document.getElementById('add-title').textContent = '➕ 构建新架构';
-  document.getElementById('add-input').value = ''; document.getElementById('modal-add').classList.add('active');
-  setTimeout(()=>document.getElementById('add-input').focus(), 100);
+  addState.mode = 'main'; addState.targetId = sectionId; document.getElementById('add-title').textContent = '➕ 构建新架构'; document.getElementById('add-input').value = ''; document.getElementById('modal-add').classList.add('active'); setTimeout(()=>document.getElementById('add-input').focus(), 100);
 }
-
-function openAddSubCourse(cardDom) {
-  addState.mode = 'sub'; addState.targetDom = cardDom;
-  document.getElementById('add-title').textContent = '➕ 添加新节点';
-  document.getElementById('add-input').value = ''; document.getElementById('modal-add').classList.add('active');
-  setTimeout(()=>document.getElementById('add-input').focus(), 100);
+function openAddChapter(courseDom) {
+  addState.mode = 'chapter'; addState.targetDom = courseDom; document.getElementById('add-title').textContent = '➕ 添加二级模块'; document.getElementById('add-input').value = ''; document.getElementById('modal-add').classList.add('active'); setTimeout(()=>document.getElementById('add-input').focus(), 100);
+}
+function openAddSubCourse(chapterDom) {
+  addState.mode = 'sub'; addState.targetDom = chapterDom; document.getElementById('add-title').textContent = '➕ 添加核心节点'; document.getElementById('add-input').value = ''; document.getElementById('modal-add').classList.add('active'); setTimeout(()=>document.getElementById('add-input').focus(), 100);
 }
 
 function confirmAdd() {
-  const val = document.getElementById('add-input').value.trim();
-  if(!val) return;
-  if (addState.mode === 'main') {
-    document.getElementById(`grid-${addState.targetId}`).appendChild(createCourseCard(val));
-  } else if (addState.mode === 'sub') {
-    addState.targetDom.querySelector('.course-content').appendChild(createSubCard(val));
-    addState.targetDom.classList.add('expanded');
-  } else if (addState.mode === 'news') {
-    const grid = document.getElementById('grid-news-list');
-    grid.insertBefore(createNewsCard(val), grid.firstChild); 
-    syncHomeLatestNews(); // 更新首页速递
-  }
+  const val = document.getElementById('add-input').value.trim(); if(!val) return;
+  if (addState.mode === 'main') { document.getElementById(`grid-${addState.targetId}`).appendChild(createCourseCard(val)); } 
+  else if (addState.mode === 'chapter') { addState.targetDom.querySelector('.course-content').appendChild(createChapterCard(val)); addState.targetDom.classList.add('expanded'); }
+  else if (addState.mode === 'sub') { addState.targetDom.querySelector('.chapter-content').appendChild(createSubCard(val)); addState.targetDom.classList.add('expanded'); } 
+  else if (addState.mode === 'news') { const grid = document.getElementById('grid-news-list'); grid.insertBefore(createNewsCard(val), grid.firstChild); syncHomeLatestNews(); }
   closeModal('modal-add'); requestSave();
 }
-
-function confirmDelete() {
-  if (deleteTarget) { deleteTarget.remove(); syncHomeLatestNews(); requestSave(); }
-  closeModal('modal-delete');
-}
+function confirmDelete() { if (deleteTarget) { deleteTarget.remove(); syncHomeLatestNews(); requestSave(); } closeModal('modal-delete'); }
 
 document.addEventListener('click', e => {
-  const header = e.target.closest('.course-header');
-  if (header && !e.target.closest('button')) { header.parentElement.classList.toggle('expanded'); return; }
+  // 折叠与展开 Level 1 & Level 2
+  const courseHeader = e.target.closest('.course-header'); if (courseHeader && !e.target.closest('button')) { courseHeader.parentElement.classList.toggle('expanded'); return; }
+  const chapterHeader = e.target.closest('.chapter-header'); if (chapterHeader && !e.target.closest('button')) { chapterHeader.parentElement.classList.toggle('expanded'); return; }
 
-  const subCard = e.target.closest('.sub-card');
-  if (subCard && !e.target.closest('button')) { enterSubPage(subCard); return; }
-
-  // 新闻卡片点击
-  const newsCard = e.target.closest('.news-card-ui');
-  if (newsCard && !e.target.closest('button')) { enterNewsPage(newsCard); return; }
+  // 只有点击 Level 3 节点才会进入工作站
+  const subCard = e.target.closest('.sub-card'); if (subCard && !e.target.closest('button')) { enterSubPage(subCard); return; }
+  
+  const newsCard = e.target.closest('.news-card-ui'); if (newsCard && !e.target.closest('button')) { enterNewsPage(newsCard); return; }
 
   if (!document.body.classList.contains('is-admin')) return;
   
-  const btnAddSub = e.target.closest('.add-sub');
-  if (btnAddSub) { e.stopPropagation(); openAddSubCourse(btnAddSub.closest('.course-card')); }
+  // 按钮逻辑派发
+  const btnAddChapter = e.target.closest('.add-chapter'); if (btnAddChapter) { e.stopPropagation(); openAddChapter(btnAddChapter.closest('.course-card')); }
+  const btnAddSub = e.target.closest('.add-sub'); if (btnAddSub) { e.stopPropagation(); openAddSubCourse(btnAddSub.closest('.chapter-card')); }
 
-  const btnDelMain = e.target.closest('.del-main');
-  if (btnDelMain) { e.stopPropagation(); deleteTarget = btnDelMain.closest('.course-card'); document.getElementById('modal-delete').classList.add('active'); }
-
-  const btnDelSub = e.target.closest('.sub-del');
-  if (btnDelSub) { e.stopPropagation(); deleteTarget = btnDelSub.closest('.sub-card'); document.getElementById('modal-delete').classList.add('active'); }
+  const btnDelMain = e.target.closest('.del-main'); if (btnDelMain) { e.stopPropagation(); deleteTarget = btnDelMain.closest('.course-card'); document.getElementById('modal-delete').classList.add('active'); }
+  const btnDelChapter = e.target.closest('.del-chapter'); if (btnDelChapter) { e.stopPropagation(); deleteTarget = btnDelChapter.closest('.chapter-card'); document.getElementById('modal-delete').classList.add('active'); }
+  const btnDelSub = e.target.closest('.sub-del'); if (btnDelSub) { e.stopPropagation(); deleteTarget = btnDelSub.closest('.sub-card'); document.getElementById('modal-delete').classList.add('active'); }
 
   const btnDelMedia = e.target.closest('.media-del-btn');
   if (btnDelMedia) { 
@@ -1209,105 +1145,72 @@ document.addEventListener('click', e => {
 });
 
 /* =====================================================
-   Right Click to Rename
+   Right Click to Rename (3层架构兼容)
 ===================================================== */
 document.addEventListener('contextmenu', e => {
   if (!document.body.classList.contains('is-admin')) return;
-
-  const mainHeader = e.target.closest('.course-header');
-  const subCard = e.target.closest('.sub-card');
-  const mediaCard = e.target.closest('.media-card');
-  const newsCard = e.target.closest('.news-card-ui');
-
+  const mainHeader = e.target.closest('.course-header'); const chapterHeader = e.target.closest('.chapter-header'); const subCard = e.target.closest('.sub-card'); const mediaCard = e.target.closest('.media-card'); const newsCard = e.target.closest('.news-card-ui');
   if (mainHeader) { e.preventDefault(); openRenameModal('main', mainHeader.closest('.course-card')); } 
+  else if (chapterHeader) { e.preventDefault(); openRenameModal('chapter', chapterHeader.closest('.chapter-card')); }
   else if (subCard) { e.preventDefault(); openRenameModal('sub', subCard); } 
-  else if (mediaCard) { e.preventDefault(); openRenameModal('media', mediaCard); }
+  else if (mediaCard) { e.preventDefault(); openRenameModal('media', mediaCard); } 
   else if (newsCard) { e.preventDefault(); openRenameModal('news', newsCard); }
 });
 
 function openRenameModal(type, dom) {
   renameState.type = type; renameState.targetDom = dom; let currentName = '';
-  if (type === 'main') currentName = dom.querySelector('h3').textContent.trim();
-  else if (type === 'sub') currentName = dom.querySelector('.sub-text').textContent.trim();
-  else if (type === 'media') currentName = dom.querySelector('h4').textContent.trim();
+  if (type === 'main') currentName = dom.querySelector('h3').textContent.trim(); 
+  else if (type === 'chapter') currentName = dom.querySelector('h4').textContent.trim(); 
+  else if (type === 'sub') currentName = dom.querySelector('.sub-text').textContent.trim(); 
+  else if (type === 'media') currentName = dom.querySelector('h4').textContent.trim(); 
   else if (type === 'news') currentName = dom.querySelector('h3').textContent.trim();
-
-  document.getElementById('rename-input').value = currentName;
-  document.getElementById('modal-rename').classList.add('active');
-  setTimeout(() => document.getElementById('rename-input').focus(), 100);
+  document.getElementById('rename-input').value = currentName; document.getElementById('modal-rename').classList.add('active'); setTimeout(() => document.getElementById('rename-input').focus(), 100);
 }
 
 function confirmRename() {
-  const newName = document.getElementById('rename-input').value.trim();
-  if (!newName) return;
-
+  const newName = document.getElementById('rename-input').value.trim(); if (!newName) return;
   if (renameState.type === 'main') { renameState.targetDom.querySelector('h3').textContent = newName; } 
-  else if (renameState.type === 'sub') {
-    renameState.targetDom.querySelector('.sub-text').textContent = newName;
-    if(activeSubCardData === renameState.targetDom) document.getElementById('page-title').textContent = newName;
-  } else if (renameState.type === 'media') {
-    const type = renameState.targetDom.dataset.type; const idx = parseInt(renameState.targetDom.dataset.index);
-    const dataObj = JSON.parse(activeSubCardData.dataset.dataStr);
-    if (type === 'pdf') dataObj.pdfs[idx].name = newName; else dataObj.videos[idx].name = newName;
-    activeSubCardData.dataset.dataStr = JSON.stringify(dataObj); renderSubPage(); 
-  } else if (renameState.type === 'news') {
-    renameState.targetDom.querySelector('h3').textContent = newName;
-    if(activeNewsCardData === renameState.targetDom) document.getElementById('news-detail-title').textContent = newName;
-    syncHomeLatestNews(); // 同步重命名到首页
-  }
-
+  else if (renameState.type === 'chapter') { renameState.targetDom.querySelector('h4').textContent = newName; } 
+  else if (renameState.type === 'sub') { renameState.targetDom.querySelector('.sub-text').textContent = newName; if(activeSubCardData === renameState.targetDom) document.getElementById('page-title').textContent = newName; } 
+  else if (renameState.type === 'media') { const type = renameState.targetDom.dataset.type; const idx = parseInt(renameState.targetDom.dataset.index); const dataObj = JSON.parse(activeSubCardData.dataset.dataStr); if (type === 'pdf') dataObj.pdfs[idx].name = newName; else dataObj.videos[idx].name = newName; activeSubCardData.dataset.dataStr = JSON.stringify(dataObj); renderSubPage(); } 
+  else if (renameState.type === 'news') { renameState.targetDom.querySelector('h3').textContent = newName; if(activeNewsCardData === renameState.targetDom) document.getElementById('news-detail-title').textContent = newName; syncHomeLatestNews(); }
   closeModal('modal-rename'); requestSave(); 
 }
 
 /* =====================================================
-   Sub-Page System (Course)
+   🌟 返回上级路由修复
+===================================================== */
+function goBackToSection() {
+  document.getElementById('page-container').classList.remove('active');
+  const targetEl = document.getElementById(currentSection);
+  if (targetEl) { targetEl.classList.remove('active'); void targetEl.offsetWidth; targetEl.classList.add('active'); }
+  activeSubCardData = null; window.scrollTo(0,0);
+}
+
+/* =====================================================
+   Sub-Page System (工作站渲染)
 ===================================================== */
 function enterSubPage(subCardDom) {
-  activeSubCardData = subCardDom;
-  document.getElementById('page-title').textContent = subCardDom.querySelector('.sub-text').textContent;
-  document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
-  const pageContainer = document.getElementById('page-container');
-  pageContainer.classList.remove('active'); void pageContainer.offsetWidth; pageContainer.classList.add('active');
-  const d = new Date(); document.getElementById('page-date').textContent = `${d.getFullYear()}/${String(d.getMonth()+1).padStart(2,'0')}/${String(d.getDate()).padStart(2,'0')}`;
-  renderSubPage(); window.scrollTo(0,0);
+  activeSubCardData = subCardDom; document.getElementById('page-title').textContent = subCardDom.querySelector('.sub-text').textContent;
+  document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active')); const pageContainer = document.getElementById('page-container'); pageContainer.classList.remove('active'); void pageContainer.offsetWidth; pageContainer.classList.add('active');
+  const d = new Date(); document.getElementById('page-date').textContent = `${d.getFullYear()}/${String(d.getMonth()+1).padStart(2,'0')}/${String(d.getDate()).padStart(2,'0')}`; renderSubPage(); window.scrollTo(0,0);
 }
 
 function renderSubPage() {
-  if(!activeSubCardData) return;
-  let dataObj = {};
-  try { dataObj = JSON.parse(activeSubCardData.dataset.dataStr); } catch(e) { dataObj = { pdfs: [], videos: [], desc: "📝 数据解析错误", md: "" }; }
-
-  document.getElementById('page-desc').textContent = dataObj.desc || "📝 暂无说明";
-  document.getElementById('md-input').value = dataObj.md || "";
-  renderMarkdownOutput('md-input', 'md-output');
-
-  const pdfGrid = document.getElementById('pdf-grid'); const videoGrid = document.getElementById('video-grid');
-  pdfGrid.innerHTML = ''; videoGrid.innerHTML = '';
-
-  if(dataObj.pdfs) dataObj.pdfs.forEach((pdf, idx) => {
-    pdfGrid.innerHTML += `<div class="media-card" data-index="${idx}" data-type="pdf" onclick="openViewer('pdf', '${pdf.url}', '${pdf.name}')"><button class="media-del-btn admin-only" data-index="${idx}" data-type="pdf">✕</button><div class="icon">📕</div><h4>${pdf.name}</h4></div>`;
-  });
-  if(dataObj.videos) dataObj.videos.forEach((vid, idx) => {
-    videoGrid.innerHTML += `<div class="media-card video-card" data-index="${idx}" data-type="video" onclick="openViewer('video', '${vid.url}', '${vid.name}')"><button class="media-del-btn admin-only" data-index="${idx}" data-type="video">✕</button><div class="icon">▶️</div><h4>${vid.name}</h4></div>`;
-  });
+  if(!activeSubCardData) return; let dataObj = {}; try { dataObj = JSON.parse(activeSubCardData.dataset.dataStr); } catch(e) { dataObj = { pdfs: [], videos: [], desc: "📝 数据解析错误", md: "" }; }
+  document.getElementById('page-desc').textContent = dataObj.desc || "📝 暂无说明"; document.getElementById('md-input').value = dataObj.md || ""; renderMarkdownOutput('md-input', 'md-output');
+  const pdfGrid = document.getElementById('pdf-grid'); const videoGrid = document.getElementById('video-grid'); pdfGrid.innerHTML = ''; videoGrid.innerHTML = '';
+  if(dataObj.pdfs) dataObj.pdfs.forEach((pdf, idx) => { pdfGrid.innerHTML += `<div class="media-card" data-index="${idx}" data-type="pdf" onclick="openViewer('pdf', '${pdf.url}', '${pdf.name}')"><button class="media-del-btn admin-only" data-index="${idx}" data-type="pdf">✕</button><div class="icon">📕</div><h4>${pdf.name}</h4></div>`; });
+  if(dataObj.videos) dataObj.videos.forEach((vid, idx) => { videoGrid.innerHTML += `<div class="media-card video-card" data-index="${idx}" data-type="video" onclick="openViewer('video', '${vid.url}', '${vid.name}')"><button class="media-del-btn admin-only" data-index="${idx}" data-type="video">✕</button><div class="icon">▶️</div><h4>${vid.name}</h4></div>`; });
 }
 
 function renderMarkdownOutput(inputId, outputId) {
-  const rawText = document.getElementById(inputId).value;
-  const outDiv = document.getElementById(outputId);
-  if(typeof marked !== 'undefined') {
-    outDiv.innerHTML = marked.parse(rawText);
-    if(typeof MathJax !== 'undefined' && MathJax.typesetPromise) { MathJax.typesetPromise([outDiv]).catch(err => console.log('MathJax Err:', err)); }
-  } else { outDiv.innerHTML = "<p>⏳ 解析器加载中...</p>"; }
+  const rawText = document.getElementById(inputId).value; const outDiv = document.getElementById(outputId);
+  if(typeof marked !== 'undefined') { outDiv.innerHTML = marked.parse(rawText); if(typeof MathJax !== 'undefined' && MathJax.typesetPromise) { MathJax.typesetPromise([outDiv]).catch(err => console.log('MathJax Err:', err)); } } else { outDiv.innerHTML = "<p>⏳ 解析器加载中...</p>"; }
 }
 
 function autoSaveSubPageContent() {
-  if(!activeSubCardData) return;
-  const currentData = JSON.parse(activeSubCardData.dataset.dataStr || "{}");
-  currentData.desc = document.getElementById('page-desc').textContent;
-  currentData.md = document.getElementById('md-input').value;
-  activeSubCardData.dataset.dataStr = JSON.stringify(currentData);
-  requestSave();
+  if(!activeSubCardData) return; const currentData = JSON.parse(activeSubCardData.dataset.dataStr || "{}"); currentData.desc = document.getElementById('page-desc').textContent; currentData.md = document.getElementById('md-input').value; activeSubCardData.dataset.dataStr = JSON.stringify(currentData); requestSave();
 }
 
 /* =====================================================
@@ -1320,33 +1223,19 @@ function openAddMedia(type) {
   else { document.getElementById('media-title').textContent = '🔗 注册外部视频'; document.getElementById('media-pdf-area').style.display = 'none'; document.getElementById('media-video-area').style.display = 'block'; }
   document.getElementById('modal-media').classList.add('active');
 }
-
-function getBase64(file) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader(); reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result); reader.onerror = error => reject(error);
-  });
-}
+function getBase64(file) { return new Promise((resolve, reject) => { const reader = new FileReader(); reader.readAsDataURL(file); reader.onload = () => resolve(reader.result); reader.onerror = error => reject(error); }); }
 
 async function confirmAddMedia() {
   const name = document.getElementById('media-name').value.trim(); if(!name) return alert('⚠️ 请设定显示名称');
-  const currentData = JSON.parse(activeSubCardData.dataset.dataStr);
-  if(!currentData.pdfs) currentData.pdfs = []; if(!currentData.videos) currentData.videos = [];
-
-  if(currentMediaType === 'pdf') {
-    const file = document.getElementById('media-file').files[0]; if(!file) return alert('⚠️ 请选择 PDF 文件');
-    const base64Url = await getBase64(file); currentData.pdfs.push({ name, url: base64Url });
-  } else {
-    const url = document.getElementById('media-url').value.trim(); if(!url) return alert('⚠️ 必须提供源地址');
-    currentData.videos.push({ name, url });
-  }
+  const currentData = JSON.parse(activeSubCardData.dataset.dataStr); if(!currentData.pdfs) currentData.pdfs = []; if(!currentData.videos) currentData.videos = [];
+  if(currentMediaType === 'pdf') { const file = document.getElementById('media-file').files[0]; if(!file) return alert('⚠️ 请选择 PDF 文件'); const base64Url = await getBase64(file); currentData.pdfs.push({ name, url: base64Url }); } 
+  else { const url = document.getElementById('media-url').value.trim(); if(!url) return alert('⚠️ 必须提供源地址'); currentData.videos.push({ name, url }); }
   activeSubCardData.dataset.dataStr = JSON.stringify(currentData); closeModal('modal-media'); renderSubPage(); requestSave();
 }
 
 function removeMedia(index, type) {
   if(!confirm('⚠️ 确定永久移除此文献/视频？')) return;
-  const currentData = JSON.parse(activeSubCardData.dataset.dataStr);
-  if(type === 'pdf') currentData.pdfs.splice(index, 1); else currentData.videos.splice(index, 1);
+  const currentData = JSON.parse(activeSubCardData.dataset.dataStr); if(type === 'pdf') currentData.pdfs.splice(index, 1); else currentData.videos.splice(index, 1);
   activeSubCardData.dataset.dataStr = JSON.stringify(currentData); renderSubPage(); requestSave();
 }
 
@@ -1354,43 +1243,46 @@ function removeMedia(index, type) {
    Viewer & PDF Download Logic
 ===================================================== */
 function openViewer(type, url, title) {
-  if(event.target.classList.contains('media-del-btn')) return;
-  document.getElementById('viewer-header-title').textContent = title;
-  const box = document.getElementById('viewer-content'); const downloadBtn = document.getElementById('viewer-download-btn');
+  if(event.target.classList.contains('media-del-btn')) return; document.getElementById('viewer-header-title').textContent = title; const box = document.getElementById('viewer-content'); const downloadBtn = document.getElementById('viewer-download-btn');
   if (type === 'pdf') { box.innerHTML = `<iframe src="${url}#toolbar=0" style="width:100%;height:100%;border:none;background:#e5e5e5;"></iframe>`; downloadBtn.style.display = 'inline-flex'; downloadBtn.href = url; downloadBtn.download = title.endsWith('.pdf') ? title : `${title}.pdf`; } 
-  else if (type === 'video') {
-    let embedUrl = url; if(url.includes('youtube.com/watch?v=')) embedUrl = url.replace('watch?v=', 'embed/'); else if(url.includes('youtu.be/')) embedUrl = url.replace('youtu.be/', 'youtube.com/embed/'); else if(url.includes('bilibili.com/video/')) { const bvid = url.split('video/')[1].split('/')[0].split('?')[0]; embedUrl = `https://player.bilibili.com/player.html?bvid=${bvid}&high_quality=1&danmaku=0`; }
-    box.innerHTML = `<iframe src="${embedUrl}" style="width:100%;height:100%;border:none;" allowfullscreen></iframe>`; downloadBtn.style.display = 'none';
-  }
+  else if (type === 'video') { let embedUrl = url; if(url.includes('youtube.com/watch?v=')) embedUrl = url.replace('watch?v=', 'embed/'); else if(url.includes('youtu.be/')) embedUrl = url.replace('youtu.be/', 'youtube.com/embed/'); else if(url.includes('bilibili.com/video/')) { const bvid = url.split('video/')[1].split('/')[0].split('?')[0]; embedUrl = `https://player.bilibili.com/player.html?bvid=${bvid}&high_quality=1&danmaku=0`; } box.innerHTML = `<iframe src="${embedUrl}" style="width:100%;height:100%;border:none;" allowfullscreen></iframe>`; downloadBtn.style.display = 'none'; }
   document.getElementById('viewer-overlay').classList.add('active');
 }
 function closeViewer() { document.getElementById('viewer-overlay').classList.remove('active'); document.getElementById('viewer-content').innerHTML = ''; }
 
 /* =====================================================
-   Drag and Drop
+   🔥 核心修复：跨层嵌套拖拽 (Nested Drag & Drop)
 ===================================================== */
 function initDragAndDrop(container) {
   let draggedEl = null;
   container.addEventListener('dragstart', e => {
     if (!isAdmin) { e.preventDefault(); return; } 
-    const target = e.target.closest('.course-card') || e.target.closest('.sub-card'); if (!target) return;
-    draggedEl = target; setTimeout(() => target.classList.add('dragging'), 0);
+    let target = e.target.closest('.sub-card'); if (!target) target = e.target.closest('.chapter-card'); if (!target) target = e.target.closest('.course-card');
+    if (!target) return; draggedEl = target; e.stopPropagation(); setTimeout(() => draggedEl.classList.add('dragging'), 0);
   });
   container.addEventListener('dragend', e => { if(draggedEl) { draggedEl.classList.remove('dragging'); draggedEl = null; requestSave(); } });
   container.addEventListener('dragover', e => {
-    e.preventDefault(); if(!draggedEl) return; const isMainCard = draggedEl.classList.contains('course-card'); const dropZone = isMainCard ? container : e.target.closest('.course-content'); if(!dropZone) return;
-    const afterElement = getDragAfterElement(dropZone, e.clientY, isMainCard ? '.course-card:not(.dragging)' : '.sub-card:not(.dragging)');
-    if (afterElement == null) dropZone.appendChild(draggedEl); else dropZone.insertBefore(draggedEl, afterElement);
+    e.preventDefault(); if(!draggedEl) return; 
+    let dropZone = null; let selector = '';
+    if (draggedEl.classList.contains('sub-card')) { const chapterCard = e.target.closest('.chapter-card'); if(chapterCard) { dropZone = chapterCard.querySelector('.chapter-content'); selector = '.sub-card:not(.dragging)'; } } 
+    else if (draggedEl.classList.contains('chapter-card')) { const courseCard = e.target.closest('.course-card'); if(courseCard) { dropZone = courseCard.querySelector('.course-content'); selector = '.chapter-card:not(.dragging)'; } } 
+    else if (draggedEl.classList.contains('course-card')) { dropZone = container; selector = '.course-card:not(.dragging)'; }
+    if(!dropZone) return; 
+    const afterElement = getDragAfterElement(dropZone, e.clientY, selector);
+    if (afterElement == null) { dropZone.appendChild(draggedEl); } else { dropZone.insertBefore(draggedEl, afterElement); }
   });
 }
 
 function getDragAfterElement(container, y, selector) {
   const draggableElements = [...container.querySelectorAll(selector)];
-  return draggableElements.reduce((closest, child) => { const box = child.getBoundingClientRect(); const offset = y - box.top - box.height / 2; if (offset < 0 && offset > closest.offset) return { offset: offset, element: child }; else return closest; }, { offset: Number.NEGATIVE_INFINITY }).element;
+  return draggableElements.reduce((closest, child) => { 
+    const box = child.getBoundingClientRect(); const offset = y - box.top - box.height / 2; 
+    if (offset < 0 && offset > closest.offset) return { offset: offset, element: child }; else return closest; 
+  }, { offset: Number.NEGATIVE_INFINITY }).element;
 }
 
 /* =====================================================
-   Backend Sync (Including News)
+   Backend Sync (3层数据结构)
 ===================================================== */
 const SECTIONS = ['math', 'mech', 'signal', 'projects', 'yoyo', 'music'];
 
@@ -1400,58 +1292,56 @@ function serializeCourses() {
     const grid = document.getElementById(`grid-${secId}`); if(!grid) return;
     const courses = [];
     grid.querySelectorAll('.course-card').forEach(card => {
-      const subs = [];
-      card.querySelectorAll('.sub-card').forEach(sub => { subs.push({ id: sub.dataset.id, name: sub.querySelector('.sub-text').textContent.trim(), dataStr: sub.dataset.dataStr }); });
-      courses.push({ id: card.id, title: card.querySelector('h3').textContent.trim(), subs: subs });
+      const chapters = [];
+      card.querySelectorAll('.chapter-card').forEach(chapter => {
+          const subs = [];
+          chapter.querySelectorAll('.sub-card').forEach(sub => { subs.push({ id: sub.dataset.id, name: sub.querySelector('.sub-text').textContent.trim(), dataStr: sub.dataset.dataStr }); });
+          chapters.push({ id: chapter.dataset.id, title: chapter.querySelector('h4').textContent.trim(), subs: subs });
+      });
+      courses.push({ id: card.id, title: card.querySelector('h3').textContent.trim(), chapters: chapters });
     });
     data[secId] = courses;
   });
 
-  const newsData = [];
-  document.querySelectorAll('#grid-news-list .news-card-ui').forEach(card => {
-    newsData.push({ id: card.dataset.id, title: card.querySelector('h3').textContent.trim(), date: card.dataset.date, md: card.dataset.md });
-  });
-  data['news_sys'] = newsData;
-
+  const newsData = []; document.querySelectorAll('#grid-news-list .news-card-ui').forEach(card => { newsData.push({ id: card.dataset.id, title: card.querySelector('h3').textContent.trim(), date: card.dataset.date, md: card.dataset.md }); }); data['news_sys'] = newsData;
   return data;
 }
 
 function rebuildCourses(data) {
-  SECTIONS.forEach(secId => {
-    if(data[secId]) {
+  SECTIONS.forEach(secId => { 
+    if(data[secId]) { 
       const grid = document.getElementById(`grid-${secId}`); if(!grid) return; grid.innerHTML = ''; 
-      data[secId].forEach(cData => {
-        const card = createCourseCard(cData.title, cData.id); const content = card.querySelector('.course-content');
-        cData.subs.forEach(sData => { content.appendChild(createSubCard(sData.name, sData.id, sData.dataStr || '{}')); });
-        grid.appendChild(card);
-      });
-    }
+      data[secId].forEach(cData => { 
+        const card = createCourseCard(cData.title, cData.id); const content = card.querySelector('.course-content'); 
+        if(cData.subs && cData.subs.length > 0 && (!cData.chapters || cData.chapters.length === 0)) {
+           const defaultChapter = createChapterCard("⭐ 核心节点模块"); const chContent = defaultChapter.querySelector('.chapter-content');
+           cData.subs.forEach(sData => { chContent.appendChild(createSubCard(sData.name, sData.id, sData.dataStr || '{}')); });
+           content.appendChild(defaultChapter);
+        } else if (cData.chapters) {
+           cData.chapters.forEach(chData => {
+              const chapter = createChapterCard(chData.title, chData.id); const chContent = chapter.querySelector('.chapter-content');
+              if(chData.subs) { chData.subs.forEach(sData => { chContent.appendChild(createSubCard(sData.name, sData.id, sData.dataStr || '{}')); }); }
+              content.appendChild(chapter);
+           });
+        }
+        grid.appendChild(card); 
+      }); 
+    } 
   });
 
-  if(data['news_sys']) {
-    const newsGrid = document.getElementById('grid-news-list'); newsGrid.innerHTML = '';
-    data['news_sys'].forEach(nData => { newsGrid.appendChild(createNewsCard(nData.title, nData.id, nData.date, nData.md)); });
-  }
-  
-  // 核心：每次重建数据后，同步更新首页速递
-  syncHomeLatestNews();
+  if(data['news_sys']) { const newsGrid = document.getElementById('grid-news-list'); newsGrid.innerHTML = ''; data['news_sys'].forEach(nData => { newsGrid.appendChild(createNewsCard(nData.title, nData.id, nData.date, nData.md)); }); }
+  syncHomeLatestNews(); 
 }
 
 async function saveToServer() {
   const payload = serializeCourses();
-  try {
-    const res = await fetch(API_SAVE, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
-    if(!res.ok) throw new Error(); console.log("✅ State Synced to 127.0.0.1:9000");
-  } catch (err) { localStorage.setItem('opo_data', JSON.stringify(payload)); }
+  try { const res = await fetch(API_SAVE, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) }); if(!res.ok) throw new Error(); console.log("✅ State Synced to 127.0.0.1:9000"); } catch (err) { localStorage.setItem('opo_data', JSON.stringify(payload)); }
 }
-
 function requestSave() { clearTimeout(saveTimer); saveTimer = setTimeout(saveToServer, 1000); }
-
 async function loadFromServer() {
   let finalData = null;
-  try { const res = await fetch(API_LOAD); const raw = await res.json(); finalData = raw.sections || raw.data || raw; } 
-  catch(err) { const local = localStorage.getItem('opo_data'); if(local) finalData = JSON.parse(local); }
-  if(finalData && Object.keys(finalData).length > 0) requestAnimationFrame(() => rebuildCourses(finalData));
+  try { const res = await fetch(API_LOAD); const raw = await res.json(); finalData = raw.sections || raw.data || raw; } catch(err) { const local = localStorage.getItem('opo_data'); if(local) finalData = JSON.parse(local); }
+  if(finalData && Object.keys(finalData).length > 0) requestAnimationFrame(() => rebuildCourses(finalData)); else syncHomeLatestNews();
 }
 </script>
 </body>
